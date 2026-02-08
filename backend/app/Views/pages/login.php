@@ -62,7 +62,6 @@
                 </form>
 
                 <div class="login-footer">
-                    <a href="<?= base_url('register') ?>">Belum punya akun? Daftar</a>
                     <a href="<?= base_url() ?>">← Kembali</a>
                 </div>
             </div>

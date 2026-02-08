@@ -21,9 +21,9 @@
                 <div class="footer-section footer-admin">
                     <h4>Admin</h4>
                     <?php if (session()->get('isLoggedIn')): ?>
-                        <a href="<?= base_url('dashboard') ?>" class="btn-login">Dashboard</a>
+                        <a href="<?= base_url('index.php?page=dashboard') ?>" class="btn-login">Dashboard</a>
                     <?php else: ?>
-                        <a href="<?= base_url('login') ?>" class="btn-login">Login</a>
+                        <a href="<?= base_url('index.php?page=login') ?>" class="btn-login">Login</a>
                     <?php endif; ?>
                 </div>
             </div>

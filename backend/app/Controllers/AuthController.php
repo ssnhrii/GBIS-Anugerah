@@ -67,37 +67,4 @@ class AuthController extends BaseController
         $this->response->deleteCookie('remember_token');
         return redirect()->to('/login')->with('success', 'Logout berhasil');
     }
-
-    public function register()
-    {
-        return view('pages/register');
-    }
-
-    public function attemptRegister()
-    {
-        $rules = [
-            'username' => 'required|min_length[3]|max_length[50]|is_unique[users.username]',
-            'email'    => 'required|valid_email|is_unique[users.email]',
-            'password' => 'required|min_length[6]',
-            'password_confirm' => 'required|matches[password]'
-        ];
-
-        if (!$this->validate($rules)) {
-            return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
-        }
-
-        $data = [
-            'username' => $this->request->getPost('username'),
-            'email'    => $this->request->getPost('email'),
-            'password' => $this->request->getPost('password'),
-            'role'     => 'user',
-            'is_active' => 1
-        ];
-
-        if ($this->userModel->insert($data)) {
-            return redirect()->to('/login')->with('success', 'Registrasi berhasil! Silakan login.');
-        }
-
-        return redirect()->back()->withInput()->with('error', 'Registrasi gagal. Silakan coba lagi.');
-    }
 }
