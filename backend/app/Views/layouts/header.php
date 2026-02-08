@@ -52,6 +52,11 @@
                     </ul>
                 </li>
                 <li><a href="<?= base_url('index.php?page=firman') ?>" class="<?= ($currentPage ?? '') === 'firman' ? 'active' : '' ?>">Firman</a></li>
+                <?php if (session()->get('isLoggedIn')): ?>
+                    <li><a href="<?= base_url('dashboard') ?>">Dashboard</a></li>
+                    <li><a href="<?= base_url('logout') ?>">Logout</a></li>
+                <?php else: ?>
+                <?php endif; ?>
             </ul>
         </nav>
     </header>

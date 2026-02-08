@@ -1,6 +1,6 @@
     <footer>
         <div class="footer-content">
-            <div class="footer-section">
+            <div class="footer-section footer-main">
                 <div class="footer-logo">
                     <img src="<?= base_url('images/logo GBIS.png') ?>" alt="Logo GBIS">
                     <h3>GBIS Anugerah</h3>
@@ -8,18 +8,24 @@
                 <p class="footer-desc">Sistem Informasi Manajemen Gereja untuk mengelola data jemaat, kegiatan, dan dokumentasi dengan mudah dan efisien.</p>
             </div>
             
-            <div class="footer-section">
-                <h4>Kontak Kami</h4>
-                <div class="footer-contact">
-                    <p><a href="https://maps.google.com/?q=GBIS+Anugerah" target="_blank">Jl. Contoh No. 123, Kota, Provinsi</a></p>
-                    <p><a href="mailto:info@gbisanugerah.com">info@gbisanugerah.com</a></p>
-                    <p><a href="tel:+6281234567890">+62 812-3456-7890</a></p>
+            <div class="footer-row">
+                <div class="footer-section footer-info">
+                    <h4>Kontak Kami</h4>
+                    <div class="footer-contact">
+                        <p><a href="https://maps.google.com/?q=GBIS+Anugerah" target="_blank">Jl. Contoh No. 123</a></p>
+                        <p><a href="mailto:info@gbisanugerah.com">info@gbisanugerah.com</a></p>
+                        <p><a href="tel:+6281234567890">62 812-3456-7890</a></p>
+                    </div>
                 </div>
-            </div>
-            
-            <div class="footer-section">
-                <h4>Admin</h4>
-                <a href="<?= base_url('index.php?page=login') ?>" class="btn-login">Login</a>
+                
+                <div class="footer-section footer-admin">
+                    <h4>Admin</h4>
+                    <?php if (session()->get('isLoggedIn')): ?>
+                        <a href="<?= base_url('dashboard') ?>" class="btn-login">Dashboard</a>
+                    <?php else: ?>
+                        <a href="<?= base_url('login') ?>" class="btn-login">Login</a>
+                    <?php endif; ?>
+                </div>
             </div>
         </div>
         

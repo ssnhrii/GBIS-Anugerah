@@ -35,7 +35,7 @@
                     </div>
                 <?php endif; ?>
 
-                <form action="<?= base_url('index.php?page=login') ?>" method="POST" class="login-form">
+                <form action="<?= base_url('login') ?>" method="POST" class="login-form">
                     <div class="form-group">
                         <label for="username">Username</label>
                         <input type="text" id="username" name="username" placeholder="Masukkan username" required autofocus>
@@ -62,6 +62,7 @@
                 </form>
 
                 <div class="login-footer">
+                    <a href="<?= base_url('register') ?>">Belum punya akun? Daftar</a>
                     <a href="<?= base_url() ?>">← Kembali</a>
                 </div>
             </div>
