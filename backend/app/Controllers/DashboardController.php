@@ -23,7 +23,7 @@ class DashboardController extends BaseController
         ];
 
         return view('layouts/header', $data)
-             . view('pages/dashboard', $data)
+             . view('index', $data)
              . view('layouts/footer');
     }
 }

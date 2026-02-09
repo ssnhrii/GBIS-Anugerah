@@ -14,17 +14,17 @@ class AuthController extends BaseController
         helper(['form', 'url']);
     }
 
-    public function login()
+    public function index()
     {
         // Jika sudah login, redirect ke dashboard
         if (session()->get('isLoggedIn')) {
-            return redirect()->to('/dashboard');
+            return redirect()->to('/');
         }
 
         return view('pages/login');
     }
 
-    public function attemptLogin()
+    public function login()
     {
         $username = $this->request->getPost('username');
         $password = $this->request->getPost('password');
@@ -32,14 +32,14 @@ class AuthController extends BaseController
 
         // Validasi input
         if (empty($username) || empty($password)) {
-            return redirect()->back()->with('error', 'Username dan password harus diisi');
+            return redirect()->to('index.php?page=login')->with('error', 'Username dan password harus diisi');
         }
 
         // Verifikasi user
         $user = $this->userModel->verifyPassword($username, $password);
 
         if (!$user) {
-            return redirect()->back()->with('error', 'Username atau password salah');
+            return redirect()->to('index.php?page=login')->with('error', 'Username atau password salah');
         }
 
         // Set session
@@ -58,13 +58,13 @@ class AuthController extends BaseController
             $this->response->setCookie('remember_token', $user['id'], 60 * 60 * 24 * 30); // 30 hari
         }
 
-        return redirect()->to('/dashboard')->with('success', 'Login berhasil!');
+        return redirect()->to('admin')->with('success', 'Login berhasil!');
     }
 
     public function logout()
     {
         session()->destroy();
         $this->response->deleteCookie('remember_token');
-        return redirect()->to('/login')->with('success', 'Logout berhasil');
+        return redirect()->to('index.php?page=login')->with('success', 'Logout berhasil');
     }
 }

@@ -1,86 +1,67 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GBIS Anugerah</title>
-    <link rel="icon" type="image/png" href="<?= base_url('images/logo GBIS.png') ?>">
-    <link rel="stylesheet" href="<?= base_url('css/design-system.css') ?>">
-    <style>
-        html, body {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100%;
-        }
-        body {
-            min-height: 50vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-    </style>
-</head>
-<body>
-    <main class="login-page">
-        <div class="login-container">
-            <div class="login-card">
-                <div class="login-header">
-                    <h1>Login</h1>
-                </div>
+<!-- Page Header Start -->
+<div class="container-fluid page-header py-5 mb-5 wow fadeIn" data-wow-delay="0.1s">
+    <div class="container text-center py-5">
+        <h1 class="display-3 text-white mb-4 animated slideInDown">Login</h1>
+        <nav aria-label="breadcrumb animated slideInDown">
+            <ol class="breadcrumb justify-content-center mb-0">
+                <li class="breadcrumb-item"><a href="<?= base_url('/') ?>">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Login</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+<!-- Page Header End -->
 
-                <?php if (session()->getFlashdata('error')): ?>
-                    <div class="alert alert-error">
-                        <?= session()->getFlashdata('error') ?>
+<!-- Login Start -->
+<div class="container-fluid py-5">
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
+                <div class="bg-light rounded p-5">
+                    <div class="text-center mb-4">
+                        <h2 class="text-primary">Login Admin</h2>
+                        <p class="text-muted">Masuk ke dashboard admin</p>
                     </div>
-                <?php endif; ?>
-
-                <form action="<?= base_url('login') ?>" method="POST" class="login-form">
-                    <div class="form-group">
-                        <label for="username">Username</label>
-                        <input type="text" id="username" name="username" placeholder="Masukkan username" required autofocus>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="password">Password</label>
-                        <div class="password-wrapper">
-                            <input type="password" id="password" name="password" placeholder="Masukkan password" required>
-                            <button type="button" class="toggle-password" onclick="togglePassword()">
-                                <span class="eye-icon" id="eyeIcon">👁️</span>
-                            </button>
+                    
+                    <?php if (session()->getFlashdata('error')): ?>
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <?= session()->getFlashdata('error') ?>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                         </div>
-                    </div>
-
-                    <div class="form-group checkbox-group">
-                        <label>
-                            <input type="checkbox" name="remember" value="1">
-                            <span>Ingat saya</span>
-                        </label>
-                    </div>
-
-                    <button type="submit" class="btn-submit">Login</button>
-                </form>
-
-                <div class="login-footer">
-                    <a href="<?= base_url() ?>">← Kembali</a>
+                    <?php endif; ?>
+                    
+                    <?php if (session()->getFlashdata('success')): ?>
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <?= session()->getFlashdata('success') ?>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                        </div>
+                    <?php endif; ?>
+                    
+                    <form action="<?= base_url('login') ?>" method="post">
+                        <?= csrf_field() ?>
+                        
+                        <div class="mb-3">
+                            <label for="username" class="form-label">Username</label>
+                            <input type="text" class="form-control" id="username" name="username" required>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="password" name="password" required>
+                        </div>
+                        
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="remember" name="remember">
+                            <label class="form-check-label" for="remember">Remember me</label>
+                        </div>
+                        
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary py-3">Login</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
-    </main>
-</body>
-</html>
-
-    <script>
-        function togglePassword() {
-            const passwordInput = document.getElementById('password');
-            const eyeIcon = document.getElementById('eyeIcon');
-            
-            if (passwordInput.type === 'password') {
-                passwordInput.type = 'text';
-                eyeIcon.textContent = '🙈';
-            } else {
-                passwordInput.type = 'password';
-                eyeIcon.textContent = '👁️';
-            }
-        }
-    </script>
+    </div>
+</div>
+<!-- Login End -->
