@@ -94,14 +94,17 @@
     <a href="#" class="btn btn-primary border-3 border-light back-to-top"><i class="fa fa-arrow-up"></i></a>
 
     <!-- JavaScript Libraries -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" defer></script>
-    <script src="<?= base_url('lib/wow/wow.min.js') ?>" defer></script>
-    <script src="<?= base_url('lib/easing/easing.min.js') ?>" defer></script>
-    <script src="<?= base_url('lib/waypoints/waypoints.min.js') ?>" defer></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="<?= base_url('lib/wow/wow.min.js') ?>"></script>
+    <script src="<?= base_url('lib/easing/easing.min.js') ?>"></script>
+    <script src="<?= base_url('lib/waypoints/waypoints.min.js') ?>"></script>
     <script src="<?= base_url('lib/owlcarousel/owl.carousel.min.js') ?>" defer></script>
 
     <!-- Template Javascript -->
-    <script src="<?= base_url('js/main.js') ?>" defer></script>
+    <script src="<?= base_url('js/main.js') ?>"></script>
+    
+    <!-- Navigation Debug (Development Only) -->
+    <script src="<?= base_url('js/navigation-debug.js') ?>"></script>
 </body>
 </html>

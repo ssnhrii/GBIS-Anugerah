@@ -7,18 +7,22 @@
     <meta content="" name="keywords">
     <meta content="" name="description">
 
+    <!-- Preload Critical Resources -->
+    <link rel="preload" href="<?= base_url('css/bootstrap.min.css') ?>" as="style">
+    <link rel="preload" href="<?= base_url('css/style.css') ?>" as="style">
+    
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&family=Pacifico&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
 
     <!-- Icon Font Stylesheet -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"/>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" media="print" onload="this.media='all'"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet" media="print" onload="this.media='all'">
 
     <!-- Libraries Stylesheet -->
     <link href="<?= base_url('lib/animate/animate.min.css') ?>" rel="stylesheet">
-    <link href="<?= base_url('lib/owlcarousel/assets/owl.carousel.min.css') ?>" rel="stylesheet">
+    <link href="<?= base_url('lib/owlcarousel/assets/owl.carousel.min.css') ?>" rel="stylesheet" media="print" onload="this.media='all'">
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="<?= base_url('css/bootstrap.min.css') ?>" rel="stylesheet">
@@ -28,7 +32,7 @@
 </head>
 <body>
     <!-- Spinner Start -->
-    <div id="spinner" class="d-none w-100 vh-100 bg-white position-fixed translate-middle top-50 start-50 d-flex align-items-center justify-content-center">
+    <div id="spinner" class="show w-100 vh-100 bg-white position-fixed translate-middle top-50 start-50 d-flex align-items-center justify-content-center">
         <div class="spinner-grow text-primary" role="status"></div>
     </div>
     <!-- Spinner End -->
