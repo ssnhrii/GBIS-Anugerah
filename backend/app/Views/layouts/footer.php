@@ -1,21 +1,6 @@
     <!-- Footer Start -->
-    <div class="container-fluid footer pt-5 wow fadeIn" data-wow-delay="0.1s">
+    <div class="container-fluid footer wow fadeIn" data-wow-delay="0.1s">
         <div class="container py-5">
-            <div class="row py-5">
-                <div class="col-lg-7">
-                    <h1 class="text-light mb-0">Subscribe our newsletter</h1>
-                    <p class="text-secondary">Get the latest news and other tips</p>
-                </div>
-                <div class="col-lg-5">
-                    <div class="position-relative mx-auto">
-                        <input class="form-control border-0 w-100 py-3 ps-4 pe-5" type="text" placeholder="Your email">
-                        <button type="button" class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">Subscribe</button>
-                    </div>
-                </div>
-                <div class="col-12">
-                    <div class="border-top border-secondary"></div>
-                </div>
-            </div>
             <div class="row g-4 footer-inner">
                 <div class="col-md-6 col-lg-6 col-xl-3">
                     <div class="footer-item mt-5">
@@ -29,15 +14,15 @@
                         <h4 class="text-light mb-4">GBIS Anugerah</h4>
                         <div class="d-flex flex-column">
                             <h6 class="text-secondary mb-0">Alamat Kami</h6>
-                            <div class="d-flex align-items-center border-bottom py-4">
-                                <span class="flex-shrink-0 btn-square bg-primary me-3 p-4"><i class="fa fa-map-marker-alt text-dark"></i></span>
-                                <a href="" class="text-body">Jl. Contoh No. 123, Jakarta</a>
-                            </div>
+                            <a href="https://maps.app.goo.gl/Zm7rYMwnu3fCJvud6" class="d-flex align-items-center border-bottom py-4 text-body text-decoration-none">
+                                <span class="flex-shrink-0 btn-square bg-primary me-3 p-4"><i class="btn btn-primary fa fa-map-marker-alt text-dark"></i></span>
+                                <span>Duriangkang, Kec. Sei Beduk, Kota Batam, Kepulauan Riau</span>
+                            </a>
                             <h6 class="text-secondary mt-4 mb-0">Kontak Kami</h6>
-                            <div class="d-flex align-items-center py-4">
-                                <span class="flex-shrink-0 btn-square bg-primary me-3 p-4"><i class="fa fa-phone-alt text-dark"></i></span>
-                                <a href="" class="text-body">+62 812 3456 7890</a>
-                            </div>
+                            <a href="https://wa.me/6282284710929" class="d-flex align-items-center border-bottom py-4 text-body text-decoration-none">
+                                <span class="flex-shrink-0 btn-square bg-primary me-3 p-4"><i class="btn btn-primary fa fa-phone-alt text-dark"></i></span>
+                                <span>+62 822 8471 0929</span>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -57,7 +42,7 @@
                 </div>
                 <div class="col-md-6 col-lg-6 col-xl-3">
                     <div class="footer-item mt-5">
-                        <h4 class="text-light mb-4">Latest Post</h4>
+                        <h4 class="text-light mb-4">Postingan Terbaru</h4>
                         <div class="d-flex border-bottom border-secondary py-4">
                             <img src="<?= base_url('img/blog-mini-1.jpg') ?>" class="img-fluid flex-shrink-0" alt="" loading="lazy">
                             <div class="ps-3">
@@ -80,10 +65,10 @@
             <div class="border-top border-secondary pb-4"></div>
             <div class="row">
                 <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                    &copy; <a class="border-bottom" href="#">GBIS Anugerah</a>, All Right Reserved.
+                    &copy; <a class="border-bottom" href="#">GBIS Anugerah</a>, Hak Cipta Dilindungi.
                 </div>
                 <div class="col-md-6 text-center text-md-end">
-                    Designed By <a class="border-bottom" href="https://chrisjericho.my.id" target="_blank">Chris J. Sembiring</a> & <a class="border-bottom" href="https://berkat.my.id" target="_blank">Berkat T. Siallagan</a>
+                    Dibuat Oleh <a class="border-bottom" href="https://chrisjericho.my.id" target="_blank">Chris J. Sembiring</a> & <a class="border-bottom" href="https://berkat.my.id" target="_blank">Berkat T. Siallagan</a>
                 </div>
             </div>
         </div>

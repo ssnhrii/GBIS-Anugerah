@@ -45,21 +45,21 @@
                     <div class="col-lg-7 text-start">
                         <div class="h-100 d-inline-flex align-items-center me-4">
                             <span class="fa fa-phone-alt me-2 text-dark"></span>
-                            <a href="#" class="text-secondary"><span>+012 345 6789</span></a>
+                            <a href="#" class="text-secondary"><span>+62 822 8471 0929</span></a>
                         </div>
                         <div class="h-100 d-inline-flex align-items-center">
                             <span class="far fa-envelope me-2 text-dark"></span>
-                            <a href="#" class="text-secondary"><span>info@example.com</span></a>
+                            <a href="#" class="text-secondary"><span>GBISAnugerah@gmail.com</span></a>
                         </div>
                     </div>
                     <div class="col-lg-5 text-end">
                         <div class="h-100 d-inline-flex align-items-center">
-                            <span class="text-body">Follow Us:</span>
+                            <span class="text-body">Ikuti Sosial Media Kami:</span>
                             <a class="text-dark px-2" href=""><i class="fab fa-facebook-f"></i></a>
                             <a class="text-dark px-2" href=""><i class="fab fa-twitter"></i></a>
                             <a class="text-dark px-2" href=""><i class="fab fa-linkedin-in"></i></a>
                             <a class="text-dark px-2" href=""><i class="fab fa-instagram"></i></a>
-                            <a class="text-body ps-4" href="<?= base_url('index.php?page=login') ?>"><i class="fa fa-user text-dark me-1"></i> login</a>
+                            <a class="text-body ps-4" href="<?= base_url('index.php?page=login') ?>"><i class="fa fa-user text-dark me-1"></i> Login</a>
                         </div>
                     </div>
                 </div>
