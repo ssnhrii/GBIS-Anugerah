@@ -6,7 +6,7 @@
                 <div class="hero-header-inner animated zoomIn">
                     <p class="fs-4 text-dark">SELAMAT DATANG DI GBIS ANUGERAH</p>
                     <h1 class="display-1 mb-5 text-dark">Melayani Dengan Kasih</h1>
-                    <a href="<?= base_url('index.php?page=sejarah') ?>" class="btn btn-primary py-3 px-5">Selengkapnya</a>
+                    <a href="#tentang" class="btn btn-primary py-3 px-5">Selengkapnya</a>
                 </div>
             </div>
         </div>
@@ -15,7 +15,7 @@
 <!-- Hero End -->
 
 <!-- About Start -->
-<div class="container-fluid about py-5">
+<div class="container-fluid about py-5"  id="tentang">
     <div class="container py-5">
         <div class="row g-5 mb-5">
             <div class="col-xl-6">
