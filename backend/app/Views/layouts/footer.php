@@ -44,14 +44,14 @@
                     <div class="footer-item mt-5">
                         <h4 class="text-light mb-4">Postingan Terbaru</h4>
                         <div class="d-flex border-bottom border-secondary py-4">
-                            <img src="<?= base_url('img/blog-mini-1.jpg') ?>" class="img-fluid flex-shrink-0" alt="" loading="lazy">
+                            <img src="<?= base_url('img/download (3).jpg') ?>" class="img-fluid flex-shrink-0" alt="" loading="lazy">
                             <div class="ps-3">
                                 <p class="mb-0 text-muted">01 Jan 2045</p>
                                 <a href="" class="text-body">Lorem ipsum dolor sit amet elit eros vel</a>
                             </div>
                         </div>
                         <div class="d-flex py-4">
-                            <img src="<?= base_url('img/blog-mini-2.jpg') ?>" class="img-fluid flex-shrink-0" alt="" loading="lazy">
+                            <img src="<?= base_url('img/download (4).jpg') ?>" class="img-fluid flex-shrink-0" alt="" loading="lazy">
                             <div class="ps-3">
                                 <p class="mb-0 text-muted">01 Jan 2045</p>
                                 <a href="" class="text-body">Lorem ipsum dolor sit amet elit eros vel</a>
