@@ -114,17 +114,9 @@
                                     Memproses...
                                 </span>
                                 <span id="loginBtnLocked" style="display: none;">
-                                    <i class="fa fa-lock me-2"></i>Terkunci (<span id="countdownTimer">00:00</span>)
+                                    <i class="fa fa-lock me-2"></i>Akses Terkunci
                                 </span>
                             </button>
-                        </div>
-                        
-                        <!-- Lockout Info -->
-                        <div id="lockoutInfo" class="mt-3 text-center" style="display: none;">
-                            <small class="text-danger">
-                                <i class="fa fa-exclamation-triangle me-1"></i>
-                                Akses Terkunci.
-                            </small>
                         </div>
                     </form>
                 </div>
