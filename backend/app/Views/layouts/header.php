@@ -71,7 +71,7 @@
         <div class="container">
             <nav class="navbar navbar-light navbar-expand-lg py-3">
                 <a href="<?= base_url('/') ?>" class="navbar-brand d-flex align-items-center">
-                    <img src="<?= base_url('images/logo GBIS.png') ?>" alt="Logo GBIS" style="height: 50px; margin-right: 10px;">
+                    <img src="<?= base_url('images/logo GBIS.png') ?>" alt="Logo GBIS" class="d-none d-lg-inline-block" style="height: 50px; margin-right: 10px;">
                     <h1 class="mb-0">GBIS <span class="text-primary">Anugerah</span></h1>
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
@@ -116,6 +116,9 @@
                             </div>
                         </div>
                         <a href="<?= base_url('index.php?page=galeri') ?>" class="nav-item nav-link <?= ($currentPage ?? '') == 'galeri' ? 'active' : '' ?>">Galeri</a>
+                        
+                        <!-- Login Menu - Mobile Only -->
+                        <a href="#" class="nav-item nav-link d-lg-none" id="mobileLoginLink">Login</a>
                     </div>
                     <a href="<?= base_url('index.php?page=firman') ?>" class="btn btn-primary py-2 px-4 d-none d-xl-inline-block">Firman</a>
                 </div>

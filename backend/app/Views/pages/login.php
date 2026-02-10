@@ -5,9 +5,8 @@
             <div class="col-lg-5 col-md-7 wow fadeIn" data-wow-delay="0.1s">
                 <div class="bg-light rounded p-5 shadow">
                     <!-- Logo & Title -->
-                    <div class="text-center mb-4">
-                        <img src="<?= base_url('images/logo GBIS.png') ?>" alt="Logo GBIS" style="height: 60px;" class="mb-3">
-                        <h2 class="text-primary mb-2">Login Admin</h2>
+                    <div class="text-center mb-2">
+                        <h2 class="text-primary mb-2">Login</h2>
                         <p class="text-muted">Masuk ke dashboard admin GBIS Anugerah</p>
                     </div>
                     
@@ -115,14 +114,6 @@
                             </button>
                         </div>
                     </form>
-                    
-                    <!-- Security Info -->
-                    <div class="text-center mt-4">
-                        <small class="text-muted">
-                            <i class="fa fa-shield-alt me-1"></i>
-                            Login dilindungi dengan enkripsi SSL
-                        </small>
-                    </div>
                 </div>
             </div>
         </div>
@@ -209,6 +200,21 @@ document.addEventListener('DOMContentLoaded', function() {
     const loginBtnText = document.getElementById('loginBtnText');
     const loginBtnLoading = document.getElementById('loginBtnLoading');
     
+    function resetButton() {
+        if (loginBtn) {
+            loginBtn.disabled = false;
+        }
+        if (loginBtnText) {
+            loginBtnText.style.display = 'inline-block';
+        }
+        if (loginBtnLoading) {
+            loginBtnLoading.style.display = 'none';
+        }
+    }
+    
+    // Reset button saat halaman dimuat (termasuk saat back dari browser)
+    resetButton();
+    
     if (loginForm) {
         loginForm.addEventListener('submit', function(e) {
             // Show loading animation
@@ -234,14 +240,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 return false;
             }
             
-            // Form akan submit secara normal
+            // Timeout fallback: reset button setelah 10 detik jika tidak ada response
+            setTimeout(function() {
+                resetButton();
+            }, 10000);
         });
-    }
-    
-    function resetButton() {
-        loginBtn.disabled = false;
-        loginBtnText.style.display = 'inline-block';
-        loginBtnLoading.style.display = 'none';
     }
     
     // Auto-hide alerts after 5 seconds
@@ -252,6 +255,23 @@ document.addEventListener('DOMContentLoaded', function() {
             bsAlert.close();
         }, 5000);
     });
+});
+
+// Reset button saat halaman ditampilkan kembali (browser back/forward)
+window.addEventListener('pageshow', function(event) {
+    const loginBtn = document.getElementById('loginBtn');
+    const loginBtnText = document.getElementById('loginBtnText');
+    const loginBtnLoading = document.getElementById('loginBtnLoading');
+    
+    if (loginBtn) {
+        loginBtn.disabled = false;
+    }
+    if (loginBtnText) {
+        loginBtnText.style.display = 'inline-block';
+    }
+    if (loginBtnLoading) {
+        loginBtnLoading.style.display = 'none';
+    }
 });
 </script>
 

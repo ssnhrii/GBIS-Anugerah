@@ -91,5 +91,71 @@
     
     <!-- Navigation Debug (Development Only) -->
     <script src="<?= base_url('js/navigation-debug.js') ?>"></script>
+    
+    <!-- Auto-close Navbar on Scroll and Click Outside (Mobile) -->
+    <script>
+    (function() {
+        const navbarCollapse = document.getElementById('navbarCollapse');
+        const navbarToggler = document.querySelector('.navbar-toggler');
+        
+        if (!navbarCollapse || !navbarToggler) return;
+        
+        // Close navbar on scroll (mobile only)
+        let scrollTimeout;
+        window.addEventListener('scroll', function() {
+            if (window.innerWidth < 992) { // Only on mobile/tablet
+                clearTimeout(scrollTimeout);
+                scrollTimeout = setTimeout(function() {
+                    if (navbarCollapse.classList.contains('show')) {
+                        const bsCollapse = new bootstrap.Collapse(navbarCollapse, {
+                            toggle: false
+                        });
+                        bsCollapse.hide();
+                    }
+                }, 150);
+            }
+        });
+        
+        // Close navbar when clicking outside (mobile only)
+        document.addEventListener('click', function(event) {
+            if (window.innerWidth < 992) { // Only on mobile/tablet
+                const isClickInsideNav = navbarCollapse.contains(event.target);
+                const isClickOnToggle = navbarToggler.contains(event.target);
+                
+                if (!isClickInsideNav && !isClickOnToggle && navbarCollapse.classList.contains('show')) {
+                    const bsCollapse = new bootstrap.Collapse(navbarCollapse, {
+                        toggle: false
+                    });
+                    bsCollapse.hide();
+                }
+            }
+        });
+        
+        // Mobile Login Link - Scroll to Footer
+        const mobileLoginLink = document.getElementById('mobileLoginLink');
+        if (mobileLoginLink) {
+            mobileLoginLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Close navbar first
+                const bsCollapse = new bootstrap.Collapse(navbarCollapse, {
+                    toggle: false
+                });
+                bsCollapse.hide();
+                
+                // Scroll to footer smoothly
+                const footer = document.querySelector('.footer');
+                if (footer) {
+                    setTimeout(function() {
+                        footer.scrollIntoView({ 
+                            behavior: 'smooth', 
+                            block: 'start' 
+                        });
+                    }, 300);
+                }
+            });
+        }
+    })();
+    </script>
 </body>
 </html>

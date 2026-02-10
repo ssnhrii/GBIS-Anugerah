@@ -33,6 +33,42 @@
     <!-- Template Javascript -->
     <script src="<?= base_url('admin/js/main.js') ?>"></script>
 
+    <!-- Auto-close Sidebar on Scroll and Click Outside -->
+    <script>
+    (function() {
+        const sidebar = document.querySelector('.sidebar');
+        const content = document.querySelector('.content');
+        
+        if (!sidebar || !content) return;
+        
+        // Close sidebar on scroll (mobile only)
+        let scrollTimeout;
+        window.addEventListener('scroll', function() {
+            if (window.innerWidth < 992) { // Only on mobile/tablet
+                clearTimeout(scrollTimeout);
+                scrollTimeout = setTimeout(function() {
+                    if (sidebar.classList.contains('open')) {
+                        sidebar.classList.remove('open');
+                    }
+                }, 150);
+            }
+        });
+        
+        // Close sidebar when clicking outside (mobile only)
+        document.addEventListener('click', function(event) {
+            if (window.innerWidth < 992) { // Only on mobile/tablet
+                const sidebarToggle = document.querySelector('.sidebar-toggler');
+                const isClickInsideSidebar = sidebar.contains(event.target);
+                const isClickOnToggle = sidebarToggle && sidebarToggle.contains(event.target);
+                
+                if (!isClickInsideSidebar && !isClickOnToggle && sidebar.classList.contains('open')) {
+                    sidebar.classList.remove('open');
+                }
+            }
+        });
+    })();
+    </script>
+
     <?= $this->renderSection('scripts') ?>
 </body>
 

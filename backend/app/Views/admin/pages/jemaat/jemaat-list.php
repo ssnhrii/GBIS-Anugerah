@@ -11,7 +11,7 @@
                     <div class="d-flex align-items-center justify-content-between mb-4">
                         <h6 class="mb-0">Kelola Jemaat</h6>
                         <a href="<?= base_url('admin/index.php?page=jemaat-tambah') ?>" class="btn btn-primary">
-                            <i class="fa fa-plus me-2"></i>Tambah Jemaat
+                            <i class="fa fa-plus me-2"></i>Tambah
                         </a>
                     </div>
                     
