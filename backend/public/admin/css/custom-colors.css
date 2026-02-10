@@ -1,0 +1,242 @@
+/* Custom Color Override - Menggunakan warna primary #009CFF */
+
+/* Override Bootstrap Primary Colors */
+.btn-primary {
+    background-color: var(--primary) !important;
+    border-color: var(--primary) !important;
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active {
+    background-color: #0088e6 !important;
+    border-color: #0088e6 !important;
+}
+
+.btn-outline-primary {
+    color: var(--primary) !important;
+    border-color: var(--primary) !important;
+}
+
+.btn-outline-primary:hover {
+    background-color: var(--primary) !important;
+    border-color: var(--primary) !important;
+}
+
+/* Text Primary - Force Override */
+.text-primary,
+h1.text-primary,
+h2.text-primary,
+h3.text-primary,
+h4.text-primary,
+h5.text-primary,
+h6.text-primary,
+.navbar-brand .text-primary,
+.sidebar .text-primary {
+    color: var(--primary) !important;
+}
+
+.bg-primary {
+    background-color: var(--primary) !important;
+}
+
+.border-primary {
+    border-color: var(--primary) !important;
+}
+
+.badge.bg-primary {
+    background-color: var(--primary) !important;
+}
+
+.alert-primary {
+    background-color: rgba(0, 156, 255, 0.1) !important;
+    border-color: rgba(0, 156, 255, 0.2) !important;
+    color: var(--primary) !important;
+}
+
+.list-group-item-primary {
+    background-color: rgba(0, 156, 255, 0.1) !important;
+    color: var(--primary) !important;
+}
+
+.table-primary {
+    background-color: rgba(0, 156, 255, 0.1) !important;
+}
+
+/* Links */
+.link-primary,
+a.text-primary {
+    color: var(--primary) !important;
+}
+
+.link-primary:hover,
+a.text-primary:hover {
+    color: #0088e6 !important;
+}
+
+/* Nav Pills */
+.nav-pills .nav-link.active {
+    background-color: var(--primary) !important;
+}
+
+/* Pagination */
+.page-item.active .page-link {
+    background-color: var(--primary) !important;
+    border-color: var(--primary) !important;
+}
+
+.page-link {
+    color: var(--primary) !important;
+}
+
+.page-link:hover {
+    color: #0088e6 !important;
+}
+
+/* Progress Bar */
+.progress-bar {
+    background-color: var(--primary) !important;
+}
+
+/* Form Controls */
+.form-check-input:checked {
+    background-color: var(--primary) !important;
+    border-color: var(--primary) !important;
+}
+
+.form-check-input:focus {
+    border-color: var(--primary) !important;
+    box-shadow: 0 0 0 0.25rem rgba(0, 156, 255, 0.25) !important;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--primary) !important;
+    box-shadow: 0 0 0 0.25rem rgba(0, 156, 255, 0.25) !important;
+}
+
+/* Dropdown */
+.dropdown-item.active,
+.dropdown-item:active {
+    background-color: var(--primary) !important;
+}
+
+/* Accordion */
+.accordion-button:not(.collapsed) {
+    background-color: rgba(0, 156, 255, 0.1) !important;
+    color: var(--primary) !important;
+}
+
+.accordion-button:focus {
+    border-color: var(--primary) !important;
+    box-shadow: 0 0 0 0.25rem rgba(0, 156, 255, 0.25) !important;
+}
+
+/* List Group */
+.list-group-item.active {
+    background-color: var(--primary) !important;
+    border-color: var(--primary) !important;
+}
+
+/* Spinner */
+.spinner-border,
+.spinner-border.text-primary {
+    color: var(--primary) !important;
+    border-color: var(--primary) transparent transparent transparent !important;
+}
+
+/* Nav Tabs */
+.nav-tabs .nav-link.active {
+    color: var(--primary) !important;
+}
+
+/* Focus States */
+.btn:focus,
+.btn-primary:focus {
+    box-shadow: 0 0 0 0.25rem rgba(0, 156, 255, 0.25) !important;
+}
+
+/* Custom Template Specific */
+.sidebar .navbar .navbar-nav .nav-link:hover,
+.sidebar .navbar .navbar-nav .nav-link.active {
+    color: var(--primary) !important;
+    border-color: var(--primary) !important;
+}
+
+.content .navbar .navbar-nav .nav-link:hover,
+.content .navbar .navbar-nav .nav-link.active {
+    color: var(--primary) !important;
+}
+
+/* Icons with text-primary */
+i.text-primary,
+.fa.text-primary,
+.fas.text-primary,
+.far.text-primary,
+.fab.text-primary {
+    color: var(--primary) !important;
+}
+
+/* Date Picker */
+.bootstrap-datetimepicker-widget table td.active,
+.bootstrap-datetimepicker-widget table td.active:hover {
+    background: var(--primary) !important;
+}
+
+.bootstrap-datetimepicker-widget table td.today::before {
+    border-bottom-color: var(--primary) !important;
+}
+
+/* Testimonial/Carousel */
+.testimonial-carousel .owl-dot {
+    border-color: var(--primary) !important;
+}
+
+.testimonial-carousel .owl-dot.active {
+    border-color: var(--primary) !important;
+}
+
+/* Form Range */
+.form-range::-webkit-slider-thumb {
+    background-color: var(--primary) !important;
+}
+
+.form-range::-moz-range-thumb {
+    background-color: var(--primary) !important;
+}
+
+/* Back to Top Button */
+.back-to-top {
+    background-color: var(--primary) !important;
+}
+
+.back-to-top:hover {
+    background-color: #0088e6 !important;
+}
+
+/* Navbar Brand Logo */
+.navbar-brand h2.text-primary,
+.navbar-brand h3.text-primary {
+    color: var(--primary) !important;
+}
+
+/* Statistics Cards Icons */
+.bg-light i.text-primary,
+.bg-light .text-primary {
+    color: var(--primary) !important;
+}
+
+/* Dro
+pdown Menu Hover Style */
+.sidebar .dropdown-menu .dropdown-item {
+    transition: all 0.3s ease;
+}
+
+.sidebar .dropdown-menu .dropdown-item:hover {
+    color: var(--primary) !important;
+    background-color: rgba(0, 156, 255, 0.1) !important;
+}
+
+.sidebar .dropdown-menu .dropdown-item:hover i {
+    color: var(--primary) !important;
+}

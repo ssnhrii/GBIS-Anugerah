@@ -859,4 +859,130 @@ class AdminController extends BaseController
             return redirect()->to('/admin/firman')->with('error', 'Gagal menghapus firman');
         }
     }
+
+    public function profile()
+    {
+        // Cek login dan role
+        if (!session()->get('isLoggedIn') || session()->get('role') !== 'admin') {
+            return redirect()->to('/login');
+        }
+
+        $data = [
+            'title' => 'My Profile - Admin GBIS',
+            'currentPage' => 'profile',
+            'username' => session()->get('username'),
+            'user_name' => session()->get('username'),
+            'user_role' => session()->get('role'),
+            'role' => session()->get('role'),
+            'email' => session()->get('email') ?? ''
+        ];
+
+        return view('admin/layouts/header', $data)
+            . view('admin/pages/profile', $data)
+            . view('admin/layouts/footer');
+    }
+
+    public function profileUpdate()
+    {
+        // Cek login dan role
+        if (!session()->get('isLoggedIn') || session()->get('role') !== 'admin') {
+            return redirect()->to('/login');
+        }
+
+        // Validasi input
+        $rules = [
+            'username' => 'required|min_length[3]|max_length[50]',
+            'name' => 'required|min_length[3]|max_length[100]',
+            'email' => 'permit_empty|valid_email',
+        ];
+
+        // Jika password diisi, tambahkan validasi password
+        if ($this->request->getPost('new_password')) {
+            $rules['current_password'] = 'required';
+            $rules['new_password'] = 'required|min_length[6]';
+            $rules['confirm_password'] = 'required|matches[new_password]';
+        }
+
+        if (!$this->validate($rules)) {
+            return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
+        }
+
+        // Update session data
+        session()->set([
+            'username' => $this->request->getPost('username'),
+            'email' => $this->request->getPost('email')
+        ]);
+
+        return redirect()->to('/admin/profile')->with('success', 'Profile berhasil diperbarui');
+    }
+
+    public function settings()
+    {
+        // Cek login dan role
+        if (!session()->get('isLoggedIn') || session()->get('role') !== 'admin') {
+            return redirect()->to('/login');
+        }
+
+        $data = [
+            'title' => 'Settings - Admin GBIS',
+            'currentPage' => 'settings',
+            'username' => session()->get('username'),
+            'user_name' => session()->get('username'),
+            'user_role' => session()->get('role'),
+            'role' => session()->get('role'),
+            'email_notifications' => session()->get('email_notifications') ?? true,
+            'new_jemaat' => session()->get('new_jemaat') ?? true,
+            'new_kegiatan' => session()->get('new_kegiatan') ?? true,
+            'two_factor' => session()->get('two_factor') ?? false,
+            'session_timeout' => session()->get('session_timeout') ?? 30,
+            'items_per_page' => session()->get('items_per_page') ?? 10,
+            'date_format' => session()->get('date_format') ?? 'd/m/Y'
+        ];
+
+        return view('admin/layouts/header', $data)
+            . view('admin/pages/settings', $data)
+            . view('admin/layouts/footer');
+    }
+
+    public function settingsUpdate()
+    {
+        // Cek login dan role
+        if (!session()->get('isLoggedIn') || session()->get('role') !== 'admin') {
+            return redirect()->to('/login');
+        }
+
+        $action = $this->request->getGet('action');
+
+        switch ($action) {
+            case 'notifications':
+                session()->set([
+                    'email_notifications' => $this->request->getPost('email_notifications') ? true : false,
+                    'new_jemaat' => $this->request->getPost('new_jemaat') ? true : false,
+                    'new_kegiatan' => $this->request->getPost('new_kegiatan') ? true : false
+                ]);
+                $message = 'Notification preferences updated successfully';
+                break;
+
+            case 'security':
+                session()->set([
+                    'two_factor' => $this->request->getPost('two_factor') ? true : false,
+                    'session_timeout' => $this->request->getPost('session_timeout')
+                ]);
+                $message = 'Security settings updated successfully';
+                break;
+
+            case 'display':
+                session()->set([
+                    'items_per_page' => $this->request->getPost('items_per_page'),
+                    'date_format' => $this->request->getPost('date_format')
+                ]);
+                $message = 'Display settings updated successfully';
+                break;
+
+            default:
+                return redirect()->to('/admin/settings')->with('error', 'Invalid action');
+        }
+
+        return redirect()->to('/admin/settings')->with('success', $message);
+    }
 }

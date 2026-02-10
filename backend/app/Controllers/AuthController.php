@@ -18,10 +18,13 @@ class AuthController extends BaseController
     {
         // Jika sudah login, redirect ke dashboard
         if (session()->get('isLoggedIn')) {
-            return redirect()->to('/');
+            return redirect()->to('admin');
         }
 
-        return view('pages/login');
+        $data = ['currentPage' => 'login'];
+        return view('layouts/header', $data)
+             . view('pages/login', $data)
+             . view('layouts/footer');
     }
 
     public function login()
@@ -32,14 +35,14 @@ class AuthController extends BaseController
 
         // Validasi input
         if (empty($username) || empty($password)) {
-            return redirect()->to('index.php?page=login')->with('error', 'Username dan password harus diisi');
+            return redirect()->to('login')->with('error', 'Username dan password harus diisi');
         }
 
         // Verifikasi user
         $user = $this->userModel->verifyPassword($username, $password);
 
         if (!$user) {
-            return redirect()->to('index.php?page=login')->with('error', 'Username atau password salah');
+            return redirect()->to('login')->with('error', 'Username atau password salah');
         }
 
         // Set session
@@ -65,6 +68,6 @@ class AuthController extends BaseController
     {
         session()->destroy();
         $this->response->deleteCookie('remember_token');
-        return redirect()->to('index.php?page=login')->with('success', 'Logout berhasil');
+        return redirect()->to(base_url());
     }
 }

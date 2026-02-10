@@ -6,6 +6,9 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
+    
+    <!-- Favicon -->
+    <link href="<?= base_url('images/logo GBIS.png') ?>" rel="icon" type="image/png">
 
     <!-- Preload Critical Resources -->
     <link rel="preload" href="<?= base_url('css/bootstrap.min.css') ?>" as="style">
@@ -67,7 +70,8 @@
         </div>
         <div class="container">
             <nav class="navbar navbar-light navbar-expand-lg py-3">
-                <a href="<?= base_url('/') ?>" class="navbar-brand">
+                <a href="<?= base_url('/') ?>" class="navbar-brand d-flex align-items-center">
+                    <img src="<?= base_url('images/logo GBIS.png') ?>" alt="Logo GBIS" style="height: 50px; margin-right: 10px;">
                     <h1 class="mb-0">GBIS <span class="text-primary">Anugerah</span></h1>
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">

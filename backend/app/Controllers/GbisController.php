@@ -6,14 +6,22 @@ class GbisController extends BaseController
 {
     public function index()
     {
+        // Load content helper
+        helper('content');
+        
         // Get page parameter from URL
         $page = $this->request->getGet('page') ?? 'home';
         
         // Sanitize page name
         $page = preg_replace('/[^a-z0-9\-]/', '', strtolower($page));
         
+        // Load page content from database
+        $pageContent = get_page_content($page);
+        
         $data = [
-            'currentPage' => $page
+            'currentPage' => $page,
+            'pageContent' => $pageContent,
+            'siteSettings' => get_all_site_settings()
         ];
         
         // Load jemaat data for jemaat pages

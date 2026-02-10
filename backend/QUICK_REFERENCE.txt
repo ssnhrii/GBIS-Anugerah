@@ -1,0 +1,221 @@
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                    CONTENT MANAGEMENT SYSTEM - QUICK REFERENCE               ║
+║                           GBIS Anugerah Website                              ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│ 1. SETUP DATABASE (Sekali Saja)                                             │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+  cd backend
+  php setup_content_management.php
+
+  ✓ Membuat tabel page_contents
+  ✓ Membuat tabel site_settings
+  ✓ Menambah kolom full_name ke users
+  ✓ Insert data default
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│ 2. AKSES ADMIN PANEL                                                         │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+  URL: http://localhost/admin
+  
+  Menu: Pengaturan (di sidebar)
+  
+  Submenu:
+  ├─ Kelola Konten      → /admin/settings/pages
+  ├─ Informasi Situs    → /admin/settings/site-info
+  └─ Kelola Admin       → /admin/settings/admins
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│ 3. KELOLA KONTEN HALAMAN                                                     │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+  8 Halaman yang bisa dikelola:
+  ├─ Home (Beranda)
+  ├─ Sejarah
+  ├─ Jemaat
+  ├─ Jemaat Bapak
+  ├─ Jemaat Ibu
+  ├─ Jemaat Pemuda
+  ├─ Jemaat Anak
+  └─ Galeri
+
+  Cara Edit:
+  1. Klik "Pengaturan" > "Kelola Konten"
+  2. Klik tombol "Edit" pada halaman
+  3. Edit konten (bisa pakai HTML)
+  4. Klik "Simpan Perubahan"
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│ 4. INFORMASI SITUS                                                           │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+  9 Pengaturan yang bisa dikelola:
+  ├─ Nama Situs
+  ├─ Email Kontak
+  ├─ Telepon
+  ├─ WhatsApp
+  ├─ Alamat
+  ├─ Facebook URL
+  ├─ Instagram URL
+  ├─ YouTube URL
+  └─ Twitter/X URL
+
+  Cara Edit:
+  1. Klik "Pengaturan" > "Informasi Situs"
+  2. Edit field yang diperlukan
+  3. Klik "Simpan Perubahan"
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│ 5. KELOLA ADMIN                                                              │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+  Fitur:
+  ├─ Tambah admin baru
+  ├─ Edit data admin
+  ├─ Ubah password
+  └─ Hapus admin
+
+  Cara Tambah Admin:
+  1. Klik "Pengaturan" > "Kelola Admin"
+  2. Klik tombol "Tambah Admin"
+  3. Isi form (username, nama, email, password, role)
+  4. Klik "Simpan"
+
+  Cara Edit Admin:
+  1. Klik tombol "Edit" pada admin
+  2. Edit data yang diperlukan
+  3. Untuk ubah password, isi field password baru
+  4. Klik "Simpan Perubahan"
+
+  Cara Hapus Admin:
+  1. Klik tombol "Hapus" pada admin
+  2. Konfirmasi penghapusan
+  3. ⚠ Tidak bisa hapus akun sendiri
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│ 6. HELPER FUNCTIONS (Untuk Developer)                                       │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+  // Load helper
+  helper('content');
+
+  // Ambil konten halaman
+  $content = get_page_content('home');
+
+  // Ambil satu pengaturan
+  $email = get_site_setting('contact_email', 'default@email.com');
+
+  // Ambil semua pengaturan
+  $settings = get_all_site_settings();
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│ 7. CONTOH PENGGUNAAN DI VIEW                                                 │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+  <!-- Tampilkan konten halaman -->
+  <?php if ($pageContent): ?>
+      <h1><?= esc($pageContent['page_title']) ?></h1>
+      <div><?= $pageContent['content'] ?></div>
+  <?php endif; ?>
+
+  <!-- Tampilkan informasi kontak -->
+  <p>Email: <?= esc($siteSettings['contact_email'] ?? '') ?></p>
+  <p>Telepon: <?= esc($siteSettings['contact_phone'] ?? '') ?></p>
+  <p>Alamat: <?= esc($siteSettings['contact_address'] ?? '') ?></p>
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│ 8. FILE STRUKTUR                                                             │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+  backend/
+  ├── app/
+  │   ├── Controllers/
+  │   │   └── SettingsController.php
+  │   ├── Models/
+  │   │   ├── PageContentModel.php
+  │   │   └── SiteSettingModel.php
+  │   ├── Views/
+  │   │   └── admin/settings/
+  │   │       ├── page_list.php
+  │   │       ├── page_edit.php
+  │   │       ├── site_info.php
+  │   │       ├── admin_list.php
+  │   │       ├── admin_add.php
+  │   │       └── admin_edit.php
+  │   └── Helpers/
+  │       └── content_helper.php
+  ├── setup_content_management.php
+  ├── PANDUAN_CONTENT_MANAGEMENT.md
+  ├── README_CONTENT_MANAGEMENT.md
+  ├── INTEGRASI_KONTEN_DINAMIS.md
+  ├── SUMMARY_CONTENT_MANAGEMENT.md
+  ├── CHECKLIST_IMPLEMENTASI.md
+  └── QUICK_REFERENCE.txt (file ini)
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│ 9. TROUBLESHOOTING                                                           │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+  Error: Table doesn't exist
+  → Jalankan: php setup_content_management.php
+
+  Error: Column 'full_name' doesn't exist
+  → Jalankan ulang setup script
+
+  Konten tidak muncul di frontend
+  → Pastikan is_active = 1
+  → Clear cache browser
+  → Check helper sudah di-load
+
+  Tidak bisa login
+  → Check tabel users
+  → Verify kredensial
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│ 10. TIPS & BEST PRACTICES                                                    │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+  ✓ Backup database sebelum perubahan besar
+  ✓ Gunakan HTML untuk formatting konten
+  ✓ Isi meta description untuk SEO
+  ✓ Test di development sebelum production
+  ✓ Upload gambar via menu Dokumentasi/Galeri
+  ✓ Selalu gunakan esc() untuk output data
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│ 11. KEAMANAN                                                                 │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+  ✓ Auth filter untuk semua route settings
+  ✓ Input validation (required, min_length, email, unique)
+  ✓ Password hashing dengan PASSWORD_DEFAULT
+  ✓ XSS protection dengan esc() function
+  ✓ CSRF protection (csrf_field())
+  ✓ SQL injection protection (Query Builder)
+  ✓ Admin tidak bisa hapus akun sendiri
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│ 12. DOKUMENTASI LENGKAP                                                      │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+  PANDUAN_CONTENT_MANAGEMENT.md     → Panduan lengkap & detail
+  README_CONTENT_MANAGEMENT.md      → Quick start guide
+  INTEGRASI_KONTEN_DINAMIS.md      → Cara integrasi ke frontend
+  SUMMARY_CONTENT_MANAGEMENT.md     → Summary & checklist
+  CHECKLIST_IMPLEMENTASI.md         → Status implementasi
+  QUICK_REFERENCE.txt               → Quick reference (file ini)
+
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                              STATUS: ✅ READY TO USE                         ║
+║                                                                              ║
+║  Sistem Content Management sudah lengkap dan siap digunakan!                ║
+║  Admin bisa mengelola konten tanpa perlu membuka kode lagi.                 ║
+║                                                                              ║
+║  Akses: /admin → Pengaturan                                                  ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+Dibuat: 10 Februari 2026
+Version: 1.0.0
