@@ -11,7 +11,7 @@
                     <div class="d-flex align-items-center justify-content-between mb-4">
                         <h6 class="mb-0">Kelola Dokumentasi</h6>
                         <a href="<?= base_url('admin/index.php?page=dokumentasi-tambah') ?>" class="btn btn-primary">
-                            <i class="fa fa-plus me-2"></i>Tambah Dokumentasi
+                            <i class="fa fa-plus me-2"></i>Tambah
                         </a>
                     </div>
                     
@@ -45,12 +45,12 @@
                                             <p class="card-text small text-muted"><?= esc($dok['jenis_kegiatan']) ?></p>
                                             <div class="btn-group btn-group-sm w-100">
                                                 <a href="<?= base_url('admin/index.php?page=dokumentasi-edit&id=' . $dok['id']) ?>" class="btn btn-primary">
-                                                    <i class="fa fa-edit"></i>
+                                                    Edit
                                                 </a>
                                                 <a href="<?= base_url('admin/index.php?page=dokumentasi-hapus&id=' . $dok['id']) ?>" 
                                                    class="btn btn-danger"
                                                    onclick="return confirm('Yakin ingin menghapus?')">
-                                                    <i class="fa fa-trash"></i>
+                                                    Hapus
                                                 </a>
                                             </div>
                                         </div>

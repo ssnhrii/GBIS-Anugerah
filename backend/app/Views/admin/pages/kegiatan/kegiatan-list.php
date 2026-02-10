@@ -11,7 +11,7 @@
                     <div class="d-flex align-items-center justify-content-between mb-4">
                         <h6 class="mb-0">Kelola Kegiatan</h6>
                         <a href="<?= base_url('admin/index.php?page=kegiatan-tambah') ?>" class="btn btn-primary">
-                            <i class="fa fa-plus me-2"></i>Tambah Kegiatan
+                            <i class="fa fa-plus me-2"></i>Tambah
                         </a>
                     </div>
                     
