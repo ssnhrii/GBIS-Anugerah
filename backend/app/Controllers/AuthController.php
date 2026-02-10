@@ -23,27 +23,24 @@ class AuthController extends BaseController
             return redirect()->to(base_url('admin/index.php'));
         }
 
+        $data = [
+            'currentPage' => 'login',
+            'siteSettings' => get_all_site_settings(),
+            'isLocked' => false,
+            'remainingTime' => 0,
+            'loginAttempts' => $this->getLoginAttempts()
+        ];
+
         // Check if account is locked
         if ($this->isAccountLocked()) {
             $remainingTime = $this->getRemainingLockoutTime();
             $minutes = ceil($remainingTime / 60);
             
-            $data = [
-                'currentPage' => 'login',
-                'siteSettings' => get_all_site_settings()
-            ];
+            $data['isLocked'] = true;
+            $data['remainingTime'] = $remainingTime;
             
             session()->setFlashdata('error', "Akun terkunci karena terlalu banyak percobaan login gagal. Silakan coba lagi dalam {$minutes} menit.");
-            
-            return view('layouts/header', $data)
-                 . view('pages/login', $data)
-                 . view('layouts/footer');
         }
-
-        $data = [
-            'currentPage' => 'login',
-            'siteSettings' => get_all_site_settings()
-        ];
         
         return view('layouts/header', $data)
              . view('pages/login', $data)
