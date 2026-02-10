@@ -103,7 +103,9 @@
                         <div class="d-grid">
                             <button type="submit" 
                                     class="btn btn-primary py-3" 
-                                    id="loginBtn">
+                                    id="loginBtn"
+                                    data-is-locked="<?= isset($isLocked) && $isLocked ? 'true' : 'false' ?>"
+                                    data-remaining-time="<?= isset($remainingTime) ? $remainingTime : 0 ?>">
                                 <span id="loginBtnText">
                                     <i class="fa fa-sign-in-alt me-2"></i>Login
                                 </span>
@@ -111,7 +113,18 @@
                                     <span class="spinner-border spinner-border-sm me-2" role="status"></span>
                                     Memproses...
                                 </span>
+                                <span id="loginBtnLocked" style="display: none;">
+                                    <i class="fa fa-lock me-2"></i>Terkunci (<span id="countdownTimer">00:00</span>)
+                                </span>
                             </button>
+                        </div>
+                        
+                        <!-- Lockout Info -->
+                        <div id="lockoutInfo" class="mt-3 text-center" style="display: none;">
+                            <small class="text-danger">
+                                <i class="fa fa-exclamation-triangle me-1"></i>
+                                Akses Terkunci.
+                            </small>
                         </div>
                     </form>
                 </div>
@@ -199,9 +212,68 @@ document.addEventListener('DOMContentLoaded', function() {
     const loginBtn = document.getElementById('loginBtn');
     const loginBtnText = document.getElementById('loginBtnText');
     const loginBtnLoading = document.getElementById('loginBtnLoading');
+    const loginBtnLocked = document.getElementById('loginBtnLocked');
+    const lockoutInfo = document.getElementById('lockoutInfo');
+    const countdownTimer = document.getElementById('countdownTimer');
+    const lockoutMinutes = document.getElementById('lockoutMinutes');
+    const lockoutSeconds = document.getElementById('lockoutSeconds');
+    
+    // Check if account is locked
+    const isLocked = loginBtn.getAttribute('data-is-locked') === 'true';
+    let remainingTime = parseInt(loginBtn.getAttribute('data-remaining-time')) || 0;
+    
+    let countdownInterval = null;
+    
+    function formatTime(seconds) {
+        const mins = Math.floor(seconds / 60);
+        const secs = seconds % 60;
+        return `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+    }
+    
+    function updateCountdown() {
+        if (remainingTime > 0) {
+            const mins = Math.floor(remainingTime / 60);
+            const secs = remainingTime % 60;
+            
+            countdownTimer.textContent = formatTime(remainingTime);
+            lockoutMinutes.textContent = mins;
+            lockoutSeconds.textContent = secs;
+            
+            remainingTime--;
+        } else {
+            // Unlock button
+            clearInterval(countdownInterval);
+            loginBtn.disabled = false;
+            loginBtn.classList.remove('btn-danger');
+            loginBtn.classList.add('btn-primary');
+            loginBtn.title = '';
+            loginBtnLocked.style.display = 'none';
+            loginBtnText.style.display = 'inline-block';
+            lockoutInfo.style.display = 'none';
+            
+            // Reload page to reset session
+            setTimeout(function() {
+                window.location.reload();
+            }, 500);
+        }
+    }
+    
+    function lockButton() {
+        loginBtn.disabled = true;
+        loginBtn.classList.remove('btn-primary');
+        loginBtn.classList.add('btn-danger');
+        loginBtn.title = 'Akun terkunci. Tunggu hingga waktu habis.';
+        loginBtnText.style.display = 'none';
+        loginBtnLoading.style.display = 'none';
+        loginBtnLocked.style.display = 'inline-block';
+        lockoutInfo.style.display = 'block';
+        
+        updateCountdown();
+        countdownInterval = setInterval(updateCountdown, 1000);
+    }
     
     function resetButton() {
-        if (loginBtn) {
+        if (loginBtn && !loginBtn.disabled) {
             loginBtn.disabled = false;
         }
         if (loginBtnText) {
@@ -212,11 +284,22 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    // Reset button saat halaman dimuat (termasuk saat back dari browser)
-    resetButton();
+    // Initialize lockout state
+    if (isLocked && remainingTime > 0) {
+        lockButton();
+    } else {
+        resetButton();
+    }
     
     if (loginForm) {
         loginForm.addEventListener('submit', function(e) {
+            // Check if button is locked
+            if (loginBtn.disabled && remainingTime > 0) {
+                e.preventDefault();
+                alert('Akun terkunci. Silakan tunggu hingga waktu habis.');
+                return false;
+            }
+            
             // Show loading animation
             loginBtn.disabled = true;
             loginBtnText.style.display = 'none';
@@ -255,6 +338,13 @@ document.addEventListener('DOMContentLoaded', function() {
             bsAlert.close();
         }, 5000);
     });
+    
+    // Cleanup interval on page unload
+    window.addEventListener('beforeunload', function() {
+        if (countdownInterval) {
+            clearInterval(countdownInterval);
+        }
+    });
 });
 
 // Reset button saat halaman ditampilkan kembali (browser back/forward)
@@ -263,14 +353,20 @@ window.addEventListener('pageshow', function(event) {
     const loginBtnText = document.getElementById('loginBtnText');
     const loginBtnLoading = document.getElementById('loginBtnLoading');
     
-    if (loginBtn) {
-        loginBtn.disabled = false;
-    }
-    if (loginBtnText) {
-        loginBtnText.style.display = 'inline-block';
-    }
-    if (loginBtnLoading) {
-        loginBtnLoading.style.display = 'none';
+    // Only reset if not locked
+    const isLocked = loginBtn && loginBtn.getAttribute('data-is-locked') === 'true';
+    const remainingTime = loginBtn ? parseInt(loginBtn.getAttribute('data-remaining-time')) || 0 : 0;
+    
+    if (!isLocked || remainingTime <= 0) {
+        if (loginBtn) {
+            loginBtn.disabled = false;
+        }
+        if (loginBtnText) {
+            loginBtnText.style.display = 'inline-block';
+        }
+        if (loginBtnLoading) {
+            loginBtnLoading.style.display = 'none';
+        }
     }
 });
 </script>
@@ -309,6 +405,16 @@ window.addEventListener('pageshow', function(event) {
 .btn-primary:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.btn-danger:disabled {
+    cursor: not-allowed;
+    opacity: 0.8;
+}
+
+.btn-danger:disabled:hover {
+    transform: none;
+    box-shadow: none;
 }
 
 .spinner-border-sm {
