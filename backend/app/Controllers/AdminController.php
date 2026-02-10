@@ -21,6 +21,14 @@ class AdminController extends BaseController
             return redirect()->to('/')->with('error', 'Akses ditolak. Hanya admin yang dapat mengakses halaman ini.');
         }
 
+        // Handle parameter-based routing
+        $page = $this->request->getGet('page');
+        $id = $this->request->getGet('id');
+
+        if ($page) {
+            return $this->handlePageParameter($page, $id);
+        }
+
         // Load model
         $jemaatModel = new \App\Models\JemaatModel();
         $kegiatanModel = new \App\Models\KegiatanModel();
@@ -57,6 +65,82 @@ class AdminController extends BaseController
         return view('admin/pages/dashboard', $data);
     }
 
+    /**
+     * Handle parameter-based routing for backward compatibility
+     */
+    private function handlePageParameter($page, $id = null)
+    {
+        switch ($page) {
+            // Jemaat
+            case 'jemaat-list':
+                return $this->jemaat();
+            case 'jemaat-tambah':
+                return $this->jemaatTambah();
+            case 'jemaat-edit':
+                return $this->jemaatEdit($id);
+            case 'jemaat-view':
+                return $this->jemaatView($id);
+            case 'jemaat-hapus':
+                return $this->jemaatHapus($id);
+            
+            // Kegiatan
+            case 'kegiatan-list':
+                return $this->kegiatan();
+            case 'kegiatan-tambah':
+                return $this->kegiatanTambah();
+            case 'kegiatan-edit':
+                return $this->kegiatanEdit($id);
+            case 'kegiatan-view':
+                return $this->kegiatanView($id);
+            case 'kegiatan-hapus':
+                return $this->kegiatanHapus($id);
+            
+            // Dokumentasi
+            case 'dokumentasi-list':
+                return $this->dokumentasi();
+            case 'dokumentasi-tambah':
+                return $this->dokumentasiTambah();
+            case 'dokumentasi-edit':
+                return $this->dokumentasiEdit($id);
+            case 'dokumentasi-hapus':
+                return $this->dokumentasiHapus($id);
+            
+            // Firman
+            case 'firman-list':
+                return $this->firman();
+            case 'firman-tambah':
+                return $this->firmanTambah();
+            case 'firman-edit':
+                return $this->firmanEdit($id);
+            case 'firman-hapus':
+                return $this->firmanHapus($id);
+            
+            // Pengaturan
+            case 'pengaturan-konten':
+                $settingsController = new \App\Controllers\SettingsController();
+                $settingsController->initController($this->request, $this->response, service('logger'));
+                return $settingsController->pageList();
+            case 'pengaturan-info':
+                $settingsController = new \App\Controllers\SettingsController();
+                $settingsController->initController($this->request, $this->response, service('logger'));
+                return $settingsController->siteInfo();
+            case 'pengaturan-admin':
+                $settingsController = new \App\Controllers\SettingsController();
+                $settingsController->initController($this->request, $this->response, service('logger'));
+                return $settingsController->adminList();
+            
+            // Profile & Settings
+            case 'profile':
+                return $this->profile();
+            case 'settings':
+                return $this->settings();
+            
+            default:
+                // Jika page tidak dikenali, redirect ke dashboard
+                return redirect()->to('/admin')->with('error', 'Halaman tidak ditemukan');
+        }
+    }
+
     public function jemaat()
     {
         // Cek login dan role
@@ -75,15 +159,16 @@ class AdminController extends BaseController
         $data = [
             'title' => 'Kelola Jemaat - Admin GBIS',
             'currentPage' => 'jemaat',
+            'active_menu' => 'jemaat',
+            'user_name' => session()->get('username'),
+            'user_role' => session()->get('role'),
             'username' => session()->get('username'),
             'role' => session()->get('role'),
             'jemaatList' => $jemaatList,
             'pager' => $jemaatModel->pager
         ];
 
-        return view('admin/layouts/header', $data)
-            . view('admin/jemaat/index', $data)
-            . view('admin/layouts/footer');
+        return view('admin/pages/jemaat/jemaat-list', $data);
     }
 
     public function jemaatTambah()
@@ -96,13 +181,14 @@ class AdminController extends BaseController
         $data = [
             'title' => 'Tambah Jemaat - Admin GBIS',
             'currentPage' => 'jemaat',
+            'active_menu' => 'jemaat',
+            'user_name' => session()->get('username'),
+            'user_role' => session()->get('role'),
             'username' => session()->get('username'),
             'role' => session()->get('role')
         ];
 
-        return view('admin/layouts/header', $data)
-            . view('admin/jemaat/tambah', $data)
-            . view('admin/layouts/footer');
+        return view('admin/pages/jemaat/tambah', $data);
     }
 
     public function jemaatSimpan()
@@ -168,14 +254,15 @@ class AdminController extends BaseController
         $data = [
             'title' => 'Edit Jemaat - Admin GBIS',
             'currentPage' => 'jemaat',
+            'active_menu' => 'jemaat',
+            'user_name' => session()->get('username'),
+            'user_role' => session()->get('role'),
             'username' => session()->get('username'),
             'role' => session()->get('role'),
             'jemaat' => $jemaat
         ];
 
-        return view('admin/layouts/header', $data)
-            . view('admin/jemaat/edit', $data)
-            . view('admin/layouts/footer');
+        return view('admin/pages/jemaat/edit', $data);
     }
 
     public function jemaatUpdate($id)
@@ -258,15 +345,16 @@ class AdminController extends BaseController
         $data = [
             'title' => 'Kelola Kegiatan - Admin GBIS',
             'currentPage' => 'kegiatan',
+            'active_menu' => 'kegiatan',
+            'user_name' => session()->get('username'),
+            'user_role' => session()->get('role'),
             'username' => session()->get('username'),
             'role' => session()->get('role'),
             'kegiatanList' => $kegiatanList,
             'pager' => $kegiatanModel->pager
         ];
 
-        return view('admin/layouts/header', $data)
-            . view('admin/kegiatan/index', $data)
-            . view('admin/layouts/footer');
+        return view('admin/pages/kegiatan/kegiatan-list', $data);
     }
 
     public function kegiatanTambah()
@@ -279,13 +367,14 @@ class AdminController extends BaseController
         $data = [
             'title' => 'Tambah Kegiatan - Admin GBIS',
             'currentPage' => 'kegiatan',
+            'active_menu' => 'kegiatan',
+            'user_name' => session()->get('username'),
+            'user_role' => session()->get('role'),
             'username' => session()->get('username'),
             'role' => session()->get('role')
         ];
 
-        return view('admin/layouts/header', $data)
-            . view('admin/kegiatan/tambah', $data)
-            . view('admin/layouts/footer');
+        return view('admin/pages/kegiatan/tambah', $data);
     }
 
     public function kegiatanSimpan()
@@ -347,14 +436,15 @@ class AdminController extends BaseController
         $data = [
             'title' => 'Edit Kegiatan - Admin GBIS',
             'currentPage' => 'kegiatan',
+            'active_menu' => 'kegiatan',
+            'user_name' => session()->get('username'),
+            'user_role' => session()->get('role'),
             'username' => session()->get('username'),
             'role' => session()->get('role'),
             'kegiatan' => $kegiatan
         ];
 
-        return view('admin/layouts/header', $data)
-            . view('admin/kegiatan/edit', $data)
-            . view('admin/layouts/footer');
+        return view('admin/pages/kegiatan/edit', $data);
     }
 
     public function kegiatanUpdate($id)
@@ -433,15 +523,16 @@ class AdminController extends BaseController
         $data = [
             'title' => 'Kelola Dokumentasi - Admin GBIS',
             'currentPage' => 'dokumentasi',
+            'active_menu' => 'dokumentasi',
+            'user_name' => session()->get('username'),
+            'user_role' => session()->get('role'),
             'username' => session()->get('username'),
             'role' => session()->get('role'),
             'dokumentasiList' => $dokumentasiList,
             'pager' => $dokumentasiModel->pager
         ];
 
-        return view('admin/layouts/header', $data)
-            . view('admin/dokumentasi/index', $data)
-            . view('admin/layouts/footer');
+        return view('admin/pages/dokumentasi/dokumentasi-list', $data);
     }
 
     public function dokumentasiTambah()
@@ -454,13 +545,14 @@ class AdminController extends BaseController
         $data = [
             'title' => 'Tambah Dokumentasi - Admin GBIS',
             'currentPage' => 'dokumentasi',
+            'active_menu' => 'dokumentasi',
+            'user_name' => session()->get('username'),
+            'user_role' => session()->get('role'),
             'username' => session()->get('username'),
             'role' => session()->get('role')
         ];
 
-        return view('admin/layouts/header', $data)
-            . view('admin/dokumentasi/tambah', $data)
-            . view('admin/layouts/footer');
+        return view('admin/pages/dokumentasi/tambah', $data);
     }
 
     public function dokumentasiSimpan()
@@ -572,14 +664,15 @@ class AdminController extends BaseController
         $data = [
             'title' => 'Edit Dokumentasi - Admin GBIS',
             'currentPage' => 'dokumentasi',
+            'active_menu' => 'dokumentasi',
+            'user_name' => session()->get('username'),
+            'user_role' => session()->get('role'),
             'username' => session()->get('username'),
             'role' => session()->get('role'),
             'dokumentasi' => $dokumentasi
         ];
 
-        return view('admin/layouts/header', $data)
-            . view('admin/dokumentasi/edit', $data)
-            . view('admin/layouts/footer');
+        return view('admin/pages/dokumentasi/edit', $data);
     }
 
     public function dokumentasiUpdate($id)
@@ -708,15 +801,16 @@ class AdminController extends BaseController
         $data = [
             'title' => 'Kelola Firman - Admin GBIS',
             'currentPage' => 'firman',
+            'active_menu' => 'firman',
+            'user_name' => session()->get('username'),
+            'user_role' => session()->get('role'),
             'username' => session()->get('username'),
             'role' => session()->get('role'),
             'firmanList' => $firmanList,
             'pager' => $firmanModel->pager
         ];
 
-        return view('admin/layouts/header', $data)
-            . view('admin/firman/index', $data)
-            . view('admin/layouts/footer');
+        return view('admin/pages/firman/firman-list', $data);
     }
 
     public function firmanTambah()
@@ -729,13 +823,14 @@ class AdminController extends BaseController
         $data = [
             'title' => 'Tambah Firman - Admin GBIS',
             'currentPage' => 'firman',
+            'active_menu' => 'firman',
+            'user_name' => session()->get('username'),
+            'user_role' => session()->get('role'),
             'username' => session()->get('username'),
             'role' => session()->get('role')
         ];
 
-        return view('admin/layouts/header', $data)
-            . view('admin/firman/tambah', $data)
-            . view('admin/layouts/footer');
+        return view('admin/pages/firman/tambah', $data);
     }
 
     public function firmanSimpan()
@@ -797,14 +892,15 @@ class AdminController extends BaseController
         $data = [
             'title' => 'Edit Firman - Admin GBIS',
             'currentPage' => 'firman',
+            'active_menu' => 'firman',
+            'user_name' => session()->get('username'),
+            'user_role' => session()->get('role'),
             'username' => session()->get('username'),
             'role' => session()->get('role'),
             'firman' => $firman
         ];
 
-        return view('admin/layouts/header', $data)
-            . view('admin/firman/edit', $data)
-            . view('admin/layouts/footer');
+        return view('admin/pages/firman/edit', $data);
     }
 
     public function firmanUpdate($id)
@@ -874,6 +970,7 @@ class AdminController extends BaseController
         $data = [
             'title' => 'My Profile - Admin GBIS',
             'currentPage' => 'profile',
+            'active_menu' => 'profile',
             'username' => session()->get('username'),
             'user_name' => session()->get('username'),
             'user_role' => session()->get('role'),
@@ -881,9 +978,7 @@ class AdminController extends BaseController
             'email' => session()->get('email') ?? ''
         ];
 
-        return view('admin/layouts/header', $data)
-            . view('admin/pages/profile', $data)
-            . view('admin/layouts/footer');
+        return view('admin/pages/profile', $data);
     }
 
     public function profileUpdate()
@@ -917,7 +1012,7 @@ class AdminController extends BaseController
             'email' => $this->request->getPost('email')
         ]);
 
-        return redirect()->to('/admin/profile')->with('success', 'Profile berhasil diperbarui');
+        return redirect()->to('/admin/index.php?page=profile')->with('success', 'Profile berhasil diperbarui');
     }
 
     public function settings()
@@ -930,6 +1025,7 @@ class AdminController extends BaseController
         $data = [
             'title' => 'Settings - Admin GBIS',
             'currentPage' => 'settings',
+            'active_menu' => 'settings',
             'username' => session()->get('username'),
             'user_name' => session()->get('username'),
             'user_role' => session()->get('role'),
@@ -943,9 +1039,7 @@ class AdminController extends BaseController
             'date_format' => session()->get('date_format') ?? 'd/m/Y'
         ];
 
-        return view('admin/layouts/header', $data)
-            . view('admin/pages/settings', $data)
-            . view('admin/layouts/footer');
+        return view('admin/pages/settings', $data);
     }
 
     public function settingsUpdate()
@@ -984,10 +1078,10 @@ class AdminController extends BaseController
                 break;
 
             default:
-                return redirect()->to('/admin/settings')->with('error', 'Invalid action');
+                return redirect()->to('/admin/index.php?page=settings')->with('error', 'Invalid action');
         }
 
-        return redirect()->to('/admin/settings')->with('success', $message);
+        return redirect()->to('/admin/index.php?page=settings')->with('success', $message);
     }
 
     /**

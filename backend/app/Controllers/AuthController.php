@@ -20,7 +20,7 @@ class AuthController extends BaseController
     {
         // Jika sudah login, redirect ke dashboard
         if (session()->get('isLoggedIn')) {
-            return redirect()->to('admin');
+            return redirect()->to(base_url('admin/index.php'));
         }
 
         // Check if account is locked
@@ -170,7 +170,7 @@ class AuthController extends BaseController
         // Log aktivitas login (optional)
         log_message('info', "User {$username} logged in from IP: " . $this->request->getIPAddress());
 
-        return redirect()->to('admin')->with('success', 'Login berhasil! Selamat datang, ' . $user['full_name'] ?? $user['username']);
+        return redirect()->to(base_url('admin/index.php'))->with('success', 'Login berhasil! Selamat datang, ' . ($user['full_name'] ?? $user['username']));
     }
 
     public function logout()

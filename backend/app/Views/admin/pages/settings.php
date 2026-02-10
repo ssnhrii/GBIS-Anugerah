@@ -1,3 +1,11 @@
+<?= $this->include('admin/layouts/header') ?>
+
+<?= $this->include('admin/layouts/sidebar') ?>
+
+        <!-- Content Start -->
+        <div class="content">
+<?= $this->include('admin/layouts/navbar') ?>
+
 <!-- Settings Start -->
 <div class="container-fluid pt-4 px-4">
     <div class="row g-4">
@@ -25,7 +33,7 @@
                         <h6 class="mb-0"><i class="fa fa-bell me-2"></i>Notification Preferences</h6>
                     </div>
                     <div class="card-body">
-                        <form action="<?= base_url('admin/settings/update?action=notifications') ?>" method="post">
+                        <form action="<?= base_url('admin/index.php?page=settings-update&action=notifications') ?>" method="post">
                             <?= csrf_field() ?>
                             
                             <div class="form-check form-switch mb-3">
@@ -62,7 +70,7 @@
                         <h6 class="mb-0"><i class="fa fa-shield-alt me-2"></i>Security Settings</h6>
                     </div>
                     <div class="card-body">
-                        <form action="<?= base_url('admin/settings/update?action=security') ?>" method="post">
+                        <form action="<?= base_url('admin/index.php?page=settings-update&action=security') ?>" method="post">
                             <?= csrf_field() ?>
                             
                             <div class="form-check form-switch mb-3">
@@ -95,7 +103,7 @@
                         <h6 class="mb-0"><i class="fa fa-desktop me-2"></i>Display Settings</h6>
                     </div>
                     <div class="card-body">
-                        <form action="<?= base_url('admin/settings/update?action=display') ?>" method="post">
+                        <form action="<?= base_url('admin/index.php?page=settings-update&action=display') ?>" method="post">
                             <?= csrf_field() ?>
                             
                             <div class="mb-3">
@@ -125,7 +133,7 @@
                 </div>
                 
                 <div class="mt-4">
-                    <a href="<?= base_url('admin') ?>" class="btn btn-secondary">
+                    <a href="<?= base_url('admin/index.php') ?>" class="btn btn-secondary">
                         <i class="fa fa-arrow-left me-2"></i>Back to Dashboard
                     </a>
                 </div>
@@ -134,3 +142,5 @@
     </div>
 </div>
 <!-- Settings End -->
+
+<?= $this->include('admin/layouts/footer') ?>

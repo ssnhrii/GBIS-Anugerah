@@ -14,6 +14,7 @@ class SettingsController extends BaseController
 
     public function __construct()
     {
+        helper(['url', 'form']);
         $this->pageContentModel = new PageContentModel();
         $this->siteSettingModel = new SiteSettingModel();
         $this->userModel = new UserModel();
@@ -29,6 +30,10 @@ class SettingsController extends BaseController
         $data = [
             'title' => 'Kelola Konten Halaman',
             'active_menu' => 'pengaturan-konten',
+            'user_name' => session()->get('username'),
+            'user_role' => session()->get('role'),
+            'username' => session()->get('username'),
+            'role' => session()->get('role'),
             'pages' => $this->pageContentModel->getAllPages()
         ];
 
@@ -106,6 +111,10 @@ class SettingsController extends BaseController
         $data = [
             'title' => 'Informasi Situs',
             'active_menu' => 'pengaturan-info',
+            'user_name' => session()->get('username'),
+            'user_role' => session()->get('role'),
+            'username' => session()->get('username'),
+            'role' => session()->get('role'),
             'settings' => $this->siteSettingModel->getAllSettings()
         ];
 
@@ -122,6 +131,10 @@ class SettingsController extends BaseController
         $data = [
             'title' => 'Kelola Admin',
             'active_menu' => 'pengaturan-admin',
+            'user_name' => session()->get('username'),
+            'user_role' => session()->get('role'),
+            'username' => session()->get('username'),
+            'role' => session()->get('role'),
             'admins' => $this->userModel->findAll()
         ];
 

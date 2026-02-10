@@ -1,3 +1,11 @@
+<?= $this->include('admin/layouts/header') ?>
+
+<?= $this->include('admin/layouts/sidebar') ?>
+
+        <!-- Content Start -->
+        <div class="content">
+<?= $this->include('admin/layouts/navbar') ?>
+
 <!-- Profile Start -->
 <div class="container-fluid pt-4 px-4">
     <div class="row g-4">
@@ -29,7 +37,7 @@
                     </div>
                     
                     <div class="col-md-8">
-                        <form action="<?= base_url('admin/profile/update') ?>" method="post">
+                        <form action="<?= base_url('admin/index.php?page=profile-update') ?>" method="post">
                             <?= csrf_field() ?>
                             
                             <div class="mb-3">
@@ -71,7 +79,7 @@
                                 <button type="submit" class="btn btn-primary">
                                     <i class="fa fa-save me-2"></i>Update Profile
                                 </button>
-                                <a href="<?= base_url('admin') ?>" class="btn btn-secondary">
+                                <a href="<?= base_url('admin/index.php') ?>" class="btn btn-secondary">
                                     <i class="fa fa-times me-2"></i>Cancel
                                 </a>
                             </div>
@@ -83,3 +91,5 @@
     </div>
 </div>
 <!-- Profile End -->
+
+<?= $this->include('admin/layouts/footer') ?>

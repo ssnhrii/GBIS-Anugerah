@@ -50,15 +50,23 @@
                     <!-- User Profile Dropdown -->
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle d-flex align-items-center" data-bs-toggle="dropdown">
-                            <div class="rounded-circle bg-primary text-white d-flex align-items-center justify-content-center me-lg-2" style="width: 40px; height: 40px;">
-                                <i class="fa fa-user"></i>
+                            <div class="position-relative me-2">
+                                <i class="fa fa-user" style="font-size: 20px; color: #009CFF;"></i>
+                                <div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1" style="bottom: -2px; right: -2px;"></div>
                             </div>
                             <span class="d-none d-lg-inline-flex"><?= esc($user_name ?? 'Admin') ?></span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
-                            <a href="<?= base_url('admin/profile') ?>" class="dropdown-item">My Profile</a>
-                            <a href="<?= base_url('admin/settings') ?>" class="dropdown-item">Settings</a>
-                            <a href="<?= base_url('logout') ?>" class="dropdown-item">Log Out</a>
+                            <a href="<?= base_url('admin/index.php?page=profile') ?>" class="dropdown-item">
+                                <i class="fa fa-user-circle me-2"></i>My Profile
+                            </a>
+                            <a href="<?= base_url('admin/index.php?page=settings') ?>" class="dropdown-item">
+                                <i class="fa fa-cog me-2"></i>Settings
+                            </a>
+                            <hr class="dropdown-divider">
+                            <a href="<?= base_url('logout') ?>" class="dropdown-item text-danger">
+                                <i class="fa fa-sign-out-alt me-2"></i>Log Out
+                            </a>
                         </div>
                     </div>
                 </div>

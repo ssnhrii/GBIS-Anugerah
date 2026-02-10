@@ -50,7 +50,7 @@
                                             <td><?= esc($jemaat['nama_lengkap']) ?></td>
                                             <td><?= esc($jemaat['jenis_kelamin']) ?></td>
                                             <td><?= esc($jemaat['kategori']) ?></td>
-                                            <td><?= esc($jemaat['telepon'] ?? '-') ?></td>
+                                            <td><?= esc($jemaat['nomor_telepon'] ?? '-') ?></td>
                                             <td>
                                                 <a href="<?= base_url('admin/index.php?page=jemaat-view&id=' . $jemaat['id']) ?>" class="btn btn-sm btn-info">
                                                     <i class="fa fa-eye"></i>
