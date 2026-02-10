@@ -124,3 +124,10 @@ _modules/*
 
 /results/
 /phpunit*.xml
+
+#-------------------------
+# Upload Files
+#-------------------------
+public/uploads/*
+!public/uploads/.gitkeep
+public/null/
