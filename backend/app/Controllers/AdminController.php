@@ -38,19 +38,23 @@ class AdminController extends BaseController
         $data = [
             'title' => 'Dashboard Admin - GBIS Anugerah',
             'currentPage' => 'dashboard',
+            'active_menu' => 'dashboard',
+            'user_name' => session()->get('username'),
+            'user_role' => session()->get('role'),
             'username' => session()->get('username'),
             'role' => session()->get('role'),
-            'totalJemaat' => $totalJemaat,
+            'total_jemaat' => $totalJemaat,
             'jemaatByKategori' => $jemaatByKategori,
-            'totalKegiatan' => $totalKegiatan,
+            'total_kegiatan' => $totalKegiatan,
             'kegiatanAkanDatang' => $kegiatanAkanDatang,
-            'totalDokumentasi' => $totalDokumentasi,
-            'totalFirman' => $totalFirman
+            'total_dokumentasi' => $totalDokumentasi,
+            'total_firman' => $totalFirman,
+            'recent_jemaat' => $jemaatModel->orderBy('id', 'DESC')->limit(5)->findAll(),
+            'recent_kegiatan' => $kegiatanModel->orderBy('id', 'DESC')->limit(5)->findAll(),
+            'recent_dokumentasi' => $dokumentasiModel->orderBy('id', 'DESC')->limit(6)->findAll()
         ];
 
-        return view('admin/layouts/header', $data)
-            . view('admin/dashboard', $data)
-            . view('admin/layouts/footer');
+        return view('admin/pages/dashboard', $data);
     }
 
     public function jemaat()
@@ -984,5 +988,115 @@ class AdminController extends BaseController
         }
 
         return redirect()->to('/admin/settings')->with('success', $message);
+    }
+
+    /**
+     * Handle POST requests from parameter-based URLs
+     * Routes POST requests to appropriate methods based on 'page' parameter
+     */
+    public function handlePost()
+    {
+        $page = $this->request->getGet('page') ?? '';
+        $action = $this->request->getGet('action') ?? '';
+
+        // Route berdasarkan page parameter
+        switch ($page) {
+            // Jemaat
+            case 'jemaat-simpan':
+                return $this->jemaatSimpan();
+            case 'jemaat-update':
+                $id = $this->request->getGet('id');
+                return $this->jemaatUpdate($id);
+            
+            // Kegiatan
+            case 'kegiatan-simpan':
+                return $this->kegiatanSimpan();
+            case 'kegiatan-update':
+                $id = $this->request->getGet('id');
+                return $this->kegiatanUpdate($id);
+            
+            // Dokumentasi
+            case 'dokumentasi-simpan':
+                return $this->dokumentasiSimpan();
+            case 'dokumentasi-update':
+                $id = $this->request->getGet('id');
+                return $this->dokumentasiUpdate($id);
+            
+            // Firman
+            case 'firman-simpan':
+                return $this->firmanSimpan();
+            case 'firman-update':
+                $id = $this->request->getGet('id');
+                return $this->firmanUpdate($id);
+            
+            // Profile & Settings
+            case 'profile-update':
+                return $this->profileUpdate();
+            case 'settings-update':
+                return $this->settingsUpdate();
+            
+            default:
+                return redirect()->to('/admin')->with('error', 'Invalid action');
+        }
+    }
+
+    /**
+     * View detail jemaat
+     */
+    public function jemaatView($id)
+    {
+        if (!session()->get('isLoggedIn') || session()->get('role') !== 'admin') {
+            return redirect()->to('/login');
+        }
+
+        $jemaatModel = new \App\Models\JemaatModel();
+        $jemaat = $jemaatModel->find($id);
+
+        if (!$jemaat) {
+            return redirect()->to('/admin/index.php?page=jemaat-list')->with('error', 'Data jemaat tidak ditemukan');
+        }
+
+        $data = [
+            'title' => 'Detail Jemaat - Admin GBIS',
+            'currentPage' => 'jemaat',
+            'active_menu' => 'jemaat',
+            'user_name' => session()->get('username'),
+            'user_role' => session()->get('role'),
+            'username' => session()->get('username'),
+            'role' => session()->get('role'),
+            'jemaat' => $jemaat
+        ];
+
+        return view('admin/pages/jemaat/view', $data);
+    }
+
+    /**
+     * View detail kegiatan
+     */
+    public function kegiatanView($id)
+    {
+        if (!session()->get('isLoggedIn') || session()->get('role') !== 'admin') {
+            return redirect()->to('/login');
+        }
+
+        $kegiatanModel = new \App\Models\KegiatanModel();
+        $kegiatan = $kegiatanModel->find($id);
+
+        if (!$kegiatan) {
+            return redirect()->to('/admin/index.php?page=kegiatan-list')->with('error', 'Data kegiatan tidak ditemukan');
+        }
+
+        $data = [
+            'title' => 'Detail Kegiatan - Admin GBIS',
+            'currentPage' => 'kegiatan',
+            'active_menu' => 'kegiatan',
+            'user_name' => session()->get('username'),
+            'user_role' => session()->get('role'),
+            'username' => session()->get('username'),
+            'role' => session()->get('role'),
+            'kegiatan' => $kegiatan
+        ];
+
+        return view('admin/pages/kegiatan/view', $data);
     }
 }

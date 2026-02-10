@@ -73,7 +73,7 @@
                                             <?php foreach ($recent_jemaat as $jemaat): ?>
                                                 <tr>
                                                     <td><?= esc($jemaat['nama_lengkap']) ?></td>
-                                                    <td><?= esc($jemaat['telepon'] ?? '-') ?></td>
+                                                    <td><?= esc($jemaat['nomor_telepon'] ?? '-') ?></td>
                                                     <td>
                                                         <a href="<?= base_url('admin/index.php?page=jemaat-view&id=' . $jemaat['id']) ?>" 
                                                            class="btn btn-sm btn-primary">
@@ -148,8 +148,8 @@
                             <?php foreach ($recent_dokumentasi as $dok): ?>
                                 <div class="col-sm-6 col-md-4 col-lg-2">
                                     <div class="card">
-                                        <?php if (!empty($dok['foto'])): ?>
-                                            <img src="<?= base_url('uploads/dokumentasi/' . $dok['foto']) ?>" 
+                                        <?php if (!empty($dok['file_path'])): ?>
+                                            <img src="<?= base_url($dok['file_path']) ?>" 
                                                  class="card-img-top" 
                                                  alt="<?= esc($dok['judul']) ?>"
                                                  style="height: 150px; object-fit: cover;">
