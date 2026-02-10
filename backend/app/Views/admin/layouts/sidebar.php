@@ -17,6 +17,7 @@
                         <span><?= esc($user_role ?? 'Administrator') ?></span>
                     </div>
                 </div>
+                <br class="mx-4 my-3" style="border-top: 5px solid #dee2e6;">
                 <div class="navbar-nav w-100">
                     <a href="<?= base_url('admin/index.php') ?>" class="nav-item nav-link <?= ($active_menu ?? '') == 'dashboard' ? 'active' : '' ?>">
                         <i class="fa fa-tachometer-alt me-2"></i>Dashboard
@@ -43,13 +44,13 @@
                             <i class="fa fa-cog me-2"></i>Pengaturan
                         </a>
                         <div class="dropdown-menu bg-transparent border-0">
-                            <a href="<?= base_url('admin/settings/pages') ?>" class="dropdown-item <?= ($active_menu ?? '') == 'pengaturan-konten' ? 'active' : '' ?>">
+                            <a href="<?= base_url('admin/index.php?page=pengaturan-konten') ?>" class="dropdown-item <?= ($active_menu ?? '') == 'pengaturan-konten' ? 'active' : '' ?>">
                                 <i class="fa fa-file-alt me-2"></i>Kelola Konten
                             </a>
-                            <a href="<?= base_url('admin/settings/site-info') ?>" class="dropdown-item <?= ($active_menu ?? '') == 'pengaturan-info' ? 'active' : '' ?>">
+                            <a href="<?= base_url('admin/index.php?page=pengaturan-info') ?>" class="dropdown-item <?= ($active_menu ?? '') == 'pengaturan-info' ? 'active' : '' ?>">
                                 <i class="fa fa-info-circle me-2"></i>Informasi Situs
                             </a>
-                            <a href="<?= base_url('admin/settings/admins') ?>" class="dropdown-item <?= ($active_menu ?? '') == 'pengaturan-admin' ? 'active' : '' ?>">
+                            <a href="<?= base_url('admin/index.php?page=pengaturan-admin') ?>" class="dropdown-item <?= ($active_menu ?? '') == 'pengaturan-admin' ? 'active' : '' ?>">
                                 <i class="fa fa-user-shield me-2"></i>Kelola Admin
                             </a>
                         </div>
