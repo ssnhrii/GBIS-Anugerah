@@ -11,7 +11,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     
     <link rel="stylesheet" href="<?= base_url('css/design-system.css') ?>">
-    <link rel="stylesheet" href="<?= base_url('css/admin.css') ?>">
 </head>
 <body class="admin-body">
     <aside class="admin-sidebar">
@@ -76,7 +75,7 @@
             
             <a href="<?= base_url('logout') ?>" class="nav-item nav-logout">
                 <span class="nav-icon">🚪</span>
-                <span class="nav-text">Logout</span>
+                <span class="nav-text">Keluar</span>
             </a>
         </nav>
     </aside>
