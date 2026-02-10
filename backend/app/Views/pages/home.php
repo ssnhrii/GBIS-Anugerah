@@ -21,11 +21,11 @@
             <div class="col-xl-6">
                 <div class="row g-4">
                     <div class="col-6">
-                        <img src="<?= base_url('img/about-1.jpg') ?>" class="img-fluid h-100 wow zoomIn" data-wow-delay="0.1s" alt="">
+                        <img src="<?= base_url('img/download.jpg') ?>" class="img-fluid h-100 wow zoomIn" data-wow-delay="0.1s" alt="">
                     </div>
                     <div class="col-6">
-                        <img src="<?= base_url('img/about-2.jpg') ?>" class="img-fluid pb-3 wow zoomIn" data-wow-delay="0.1s" alt="">
-                        <img src="<?= base_url('img/about-3.jpg') ?>" class="img-fluid pt-3 wow zoomIn" data-wow-delay="0.1s" alt="">
+                        <img src="<?= base_url('img/download (1).jpg') ?>" class="img-fluid pb-3 wow zoomIn" data-wow-delay="0.1s" alt="">
+                        <img src="<?= base_url('img/download (2).jpg') ?>" class="img-fluid pt-3 wow zoomIn" data-wow-delay="0.1s" alt="">
                     </div>
                 </div>
             </div>
@@ -54,7 +54,7 @@
                 <div class="bg-light p-3 mb-4">
                     <div class="row align-items-center justify-content-center">
                         <div class="col-3">
-                            <img src="<?= base_url('img/about-child.jpg') ?>" class="img-fluid rounded-circle" alt="">
+                            <img src="<?= base_url('img/download (5).jpg') ?>" class="img-fluid rounded-circle" alt="">
                         </div>
                         <div class="col-6">
                             <p class="mb-0">Lorem ipsum dolor sit amet elit. Donec tempus eros vel dolor mattis aliquam. Etiam quis mauris justo.</p>
@@ -188,7 +188,7 @@
             </div>
             <div class="col-12 col-lg-4">
                 <div class="overflow-hidden mb-5">
-                    <img src="<?= base_url('img/events-1.jpg') ?>" class="img-fluid w-100" alt="">
+                    <img src="<?= base_url('img/download (3).jpg') ?>" class="img-fluid w-100" alt="">
                 </div>
             </div>
         </div>
@@ -208,7 +208,7 @@
             </div>
             <div class="col-12 col-lg-4">
                 <div class="overflow-hidden mb-5">
-                    <img src="<?= base_url('img/events-2.jpg') ?>" class="img-fluid w-100" alt="">
+                    <img src="<?= base_url('img/download (3).jpg') ?>" class="img-fluid w-100" alt="">
                 </div>
             </div>
         </div>
@@ -228,7 +228,7 @@
             </div>
             <div class="col-12 col-lg-4">
                 <div class="overflow-hidden mb-5">
-                    <img src="<?= base_url('img/events-3.jpg') ?>" class="img-fluid w-100" alt="">
+                    <img src="<?= base_url('img/download (3).jpg') ?>" class="img-fluid w-100" alt="">
                 </div>
             </div>
         </div>
@@ -247,7 +247,7 @@
             <div class="col-lg-6 col-xl-4">
                 <div class="sermon-item wow fadeIn" data-wow-delay="0.1s">
                     <div class="overflow-hidden p-4 pb-0">
-                        <img src="<?= base_url('img/sermon-1.jpg') ?>" class="img-fluid w-100" alt="">
+                        <img src="<?= base_url('img/download (4).jpg') ?>" class="img-fluid w-100" alt="">
                     </div>
                     <div class="p-4">
                         <div class="sermon-meta d-flex justify-content-between pb-2">
@@ -269,7 +269,7 @@
             <div class="col-lg-6 col-xl-4">
                 <div class="sermon-item wow fadeIn" data-wow-delay="0.3s">
                     <div class="overflow-hidden p-4 pb-0">
-                        <img src="<?= base_url('img/sermon-2.jpg') ?>" class="img-fluid w-100" alt="">
+                        <img src="<?= base_url('img/download (4).jpg') ?>" class="img-fluid w-100" alt="">
                     </div>
                     <div class="p-4">
                         <div class="sermon-meta d-flex justify-content-between pb-2">
@@ -291,7 +291,7 @@
             <div class="col-lg-6 col-xl-4">
                 <div class="sermon-item wow fadeIn" data-wow-delay="0.5s">
                     <div class="overflow-hidden p-4 pb-0">
-                        <img src="<?= base_url('img/sermon-3.jpg') ?>" class="img-fluid w-100" alt="">
+                        <img src="<?= base_url('img/download (4).jpg') ?>" class="img-fluid w-100" alt="">
                     </div>
                     <div class="p-4">
                         <div class="sermon-meta d-flex justify-content-between pb-2">

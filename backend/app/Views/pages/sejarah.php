@@ -21,11 +21,11 @@
             <div class="col-xl-6">
                 <div class="row g-4">
                     <div class="col-6">
-                        <img src="<?= base_url('img/about-1.jpg') ?>" class="img-fluid h-100 wow zoomIn" data-wow-delay="0.1s" alt="Sejarah GBIS Anugerah">
+                        <img src="<?= base_url('img/download.jpg') ?>" class="img-fluid h-100 wow zoomIn" data-wow-delay="0.1s" alt="Sejarah GBIS Anugerah">
                     </div>
                     <div class="col-6">
-                        <img src="<?= base_url('img/about-2.jpg') ?>" class="img-fluid pb-3 wow zoomIn" data-wow-delay="0.1s" alt="Pembangunan Gereja">
-                        <img src="<?= base_url('img/about-3.jpg') ?>" class="img-fluid pt-3 wow zoomIn" data-wow-delay="0.1s" alt="Jemaat GBIS">
+                        <img src="<?= base_url('img/download (1).jpg') ?>" class="img-fluid pb-3 wow zoomIn" data-wow-delay="0.1s" alt="Pembangunan Gereja">
+                        <img src="<?= base_url('img/download (2).jpg') ?>" class="img-fluid pt-3 wow zoomIn" data-wow-delay="0.1s" alt="Jemaat GBIS">
                     </div>
                 </div>
             </div>
@@ -73,7 +73,7 @@
         <div class="row g-4 mb-5 wow fadeIn" data-wow-delay="0.1s">
             <div class="col-lg-6 order-lg-1">
                 <div class="position-relative h-100">
-                    <img src="<?= base_url('img/events-1.jpg') ?>" class="img-fluid rounded" alt="Tahun 2000">
+                    <img src="<?= base_url('img/download (3).jpg') ?>" class="img-fluid rounded" alt="Tahun 2000">
                 </div>
             </div>
             <div class="col-lg-6 order-lg-2">
@@ -96,7 +96,7 @@
         <div class="row g-4 mb-5 wow fadeIn" data-wow-delay="0.15s">
             <div class="col-lg-6 order-lg-2">
                 <div class="position-relative h-100">
-                    <img src="<?= base_url('img/events-2.jpg') ?>" class="img-fluid rounded" alt="Tahun 2005">
+                    <img src="<?= base_url('img/download (3).jpg') ?>" class="img-fluid rounded" alt="Tahun 2005">
                 </div>
             </div>
             <div class="col-lg-6 order-lg-1">
@@ -119,7 +119,7 @@
         <div class="row g-4 mb-5 wow fadeIn" data-wow-delay="0.2s">
             <div class="col-lg-6 order-lg-1">
                 <div class="position-relative h-100">
-                    <img src="<?= base_url('img/events-3.jpg') ?>" class="img-fluid rounded" alt="Tahun 2010">
+                    <img src="<?= base_url('img/download (3).jpg') ?>" class="img-fluid rounded" alt="Tahun 2010">
                 </div>
             </div>
             <div class="col-lg-6 order-lg-2">
@@ -142,7 +142,7 @@
         <div class="row g-4 mb-5 wow fadeIn" data-wow-delay="0.25s">
             <div class="col-lg-6 order-lg-2">
                 <div class="position-relative h-100">
-                    <img src="<?= base_url('img/sermon-1.jpg') ?>" class="img-fluid rounded" alt="Tahun 2015">
+                    <img src="<?= base_url('img/download (4).jpg') ?>" class="img-fluid rounded" alt="Tahun 2015">
                 </div>
             </div>
             <div class="col-lg-6 order-lg-1">
@@ -165,7 +165,7 @@
         <div class="row g-4 mb-5 wow fadeIn" data-wow-delay="0.3s">
             <div class="col-lg-6 order-lg-1">
                 <div class="position-relative h-100">
-                    <img src="<?= base_url('img/sermon-2.jpg') ?>" class="img-fluid rounded" alt="Tahun 2020">
+                    <img src="<?= base_url('img/download (4).jpg') ?>" class="img-fluid rounded" alt="Tahun 2020">
                 </div>
             </div>
             <div class="col-lg-6 order-lg-2">
@@ -188,7 +188,7 @@
         <div class="row g-4 mb-5 wow fadeIn" data-wow-delay="0.35s">
             <div class="col-lg-6 order-lg-2">
                 <div class="position-relative h-100">
-                    <img src="<?= base_url('img/sermon-3.jpg') ?>" class="img-fluid rounded" alt="Tahun 2024">
+                    <img src="<?= base_url('img/download (4).jpg') ?>" class="img-fluid rounded" alt="Tahun 2024">
                 </div>
             </div>
             <div class="col-lg-6 order-lg-1">
@@ -211,7 +211,7 @@
         <div class="row g-4 wow fadeIn" data-wow-delay="0.4s">
             <div class="col-lg-6 order-lg-1">
                 <div class="position-relative h-100">
-                    <img src="<?= base_url('img/about-1.jpg') ?>" class="img-fluid rounded" alt="Masa Kini">
+                    <img src="<?= base_url('img/download.jpg') ?>" class="img-fluid rounded" alt="Masa Kini">
                 </div>
             </div>
             <div class="col-lg-6 order-lg-2">

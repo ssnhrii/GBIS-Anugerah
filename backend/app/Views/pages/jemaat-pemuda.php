@@ -21,7 +21,7 @@
             <div class="col-xl-6 wow fadeIn" data-wow-delay="0.1s">
                 <div class="row g-4">
                     <div class="col-12">
-                        <img src="<?= base_url('img/events-3.jpg') ?>" class="img-fluid rounded" alt="Pemuda">
+                        <img src="<?= base_url('img/download (3).jpg') ?>" class="img-fluid rounded" alt="Pemuda">
                     </div>
                 </div>
             </div>
